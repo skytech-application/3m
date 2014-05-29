@@ -165,3 +165,18 @@ java.io.IOException: Le processus ne peut pas accéder au fichier car un autre p
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1450)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1426)
+
+!ENTRY org.eclipse.egit.core 4 0 2014-05-29 13:02:22.872
+!MESSAGE An exception occurred during push on URI https://github.com/skytech-application/mog-mog-manager.git: https://github.com/skytech-application/mog-mog-manager.git: not authorized
+!STACK 0
+org.eclipse.jgit.errors.TransportException: https://github.com/skytech-application/mog-mog-manager.git: not authorized
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:479)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:398)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:154)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1173)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:190)
+	at org.eclipse.egit.ui.internal.push.PushWizard$PushJob.run(PushWizard.java:298)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.egit.ui 4 0 2014-05-29 13:02:22.876
+!MESSAGE Can't connect to any repository: https://github.com/skytech-application/mog-mog-manager.git (https://github.com/skytech-application/mog-mog-manager.git: not authorized)
