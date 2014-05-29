@@ -7,9 +7,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,6 +18,7 @@ public abstract class GenericHibernateDAO<T, PK extends Serializable>
 	@PersistenceContext(unitName = "JPAService")
 	private EntityManager entityManager;
 
+	@SuppressWarnings("unchecked")
 	public GenericHibernateDAO() {
 		ParameterizedType genericSuperclass = (ParameterizedType) getClass()
 				.getGenericSuperclass();
@@ -37,6 +35,7 @@ public abstract class GenericHibernateDAO<T, PK extends Serializable>
 		return this.entityManager.find(entityClass, id);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<T> findAll() {
 		return this.entityManager.createQuery("from " + entityClass.getName()).getResultList();
 	}
