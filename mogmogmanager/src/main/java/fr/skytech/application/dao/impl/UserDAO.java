@@ -15,9 +15,6 @@ import fr.skytech.application.model.User;
 public class UserDAO extends GenericHibernateDAO<User, Long> implements
 		IUserDao {
 
-	@Value("${mock}")
-	protected boolean mock;
-
 	public User find(Long id) {
 		if (mock) {
 			User user = new User();
