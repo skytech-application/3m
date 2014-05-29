@@ -1,10 +1,14 @@
 package fr.skytech.application.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +23,9 @@ public class User {
 	@Column(nullable = false, unique = true)
 	private String username;
 	
+	@OneToMany
+	private Set<User> friends;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -30,6 +37,15 @@ public class User {
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public Set<User> getFriends() {
+		if(friends==null){
+			friends=new HashSet<User>();
+		}
+		return friends;
+	}
+	public void setFriends(Set<User> friends) {
+		this.friends = friends;
 	}
 	
 	

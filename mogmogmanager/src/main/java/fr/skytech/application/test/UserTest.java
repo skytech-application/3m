@@ -1,10 +1,6 @@
 package fr.skytech.application.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -33,30 +29,47 @@ public class UserTest {
 	}
 
 	@Test
-	public void shouldHaveASessionFactory() {
-		assertNotNull(sessionFactory);
-	}
-
-	@Test
-	public void shouldHaveNoObjectsAtStart() {
-		List<?> results = currentSession.createQuery("from User").list();
-		assertTrue(results.isEmpty());
-	}
-
-	@Test
-	public void shouldBeAbleToPersistAnObject() {
+	public void user_create() {
 		assertEquals(0, currentSession.createQuery("from User").list().size());
 		User user = new User();
 		user.setUsername("admin");
+				
 		currentSession.persist(user);
 		currentSession.flush();
 		assertEquals(1, currentSession.createQuery("from User").list().size());
 	}
+	
+	@Test
+	public void user_add_friends() {
+		assertEquals(0, currentSession.createQuery("from User").list().size());
+		User user = new User();
+		user.setUsername("admin");
+		
+		User friend1 = new User();
+		friend1.setUsername("friend1");
+		currentSession.persist(friend1);
+		
+		User friend2 = new User();
+		friend2.setUsername("friend2");
+		currentSession.persist(friend2);
+		
+		user.getFriends().add(friend1);
+		user.getFriends().add(friend2);
+		
+		currentSession.persist(user);
+		currentSession.flush();
+		
+		User adminUser = (User) currentSession.createQuery("from User where username = 'admin'").uniqueResult();
+		assertEquals(2, adminUser.getFriends().size());
+	}
 
 	@Test
-	public void shouldBeABleToQueryForObjects() {
-		shouldBeAbleToPersistAnObject();
-
+	public void user_find_by_username() {
+		User user = new User();
+		user.setUsername("admin");
+		currentSession.persist(user);
+		currentSession.flush();
+		
 		assertEquals(1,
 				currentSession.createQuery("from User where username = 'admin'")
 						.list().size());
