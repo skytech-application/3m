@@ -6,6 +6,8 @@
 <li>Log4J</li>
 <li>JUnit 4</li>
 <li>HSQLDB (for test cases)</li>
+<li>Mock mode</li>
+<li>MySQL</li>
 </ul>
 
 contact : skytech.application@gmail.com
