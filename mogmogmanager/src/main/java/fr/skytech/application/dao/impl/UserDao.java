@@ -6,13 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
-import fr.skytech.application.dao.GenericHibernateDAO;
+import fr.skytech.application.dao.GenericHibernateDao;
 import fr.skytech.application.dao.IUserDao;
 import fr.skytech.application.exception.TechnicalException;
 import fr.skytech.application.model.User;
 
 @Repository
-public class UserDAO extends GenericHibernateDAO<User, Long> implements
+public class UserDao extends GenericHibernateDao<User, Long> implements
 		IUserDao {
 
 	public User find(Long id) {

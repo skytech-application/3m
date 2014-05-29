@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public abstract class GenericHibernateDAO<T, PK extends Serializable>
+public abstract class GenericHibernateDao<T, PK extends Serializable>
 		implements GenericDao<T, PK> {
 
 	protected Class<T> entityClass;
@@ -23,7 +23,7 @@ public abstract class GenericHibernateDAO<T, PK extends Serializable>
 	private EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
-	public GenericHibernateDAO() {
+	public GenericHibernateDao() {
 		ParameterizedType genericSuperclass = (ParameterizedType) getClass()
 				.getGenericSuperclass();
 		this.entityClass = (Class<T>) genericSuperclass

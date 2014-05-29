@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import fr.skytech.application.controller.dto.UserDTO;
+import fr.skytech.application.controller.dto.UserDto;
 import fr.skytech.application.services.IUserService;
 
 @Controller
@@ -20,26 +20,26 @@ public class UserController  {
 	IUserService service;
 	
 	@RequestMapping(value="/{userId}", method=RequestMethod.GET)
-    public  @ResponseBody UserDTO findUserById(@PathVariable Long userId	) {
-		UserDTO dto = service.findUserById(userId);
+    public  @ResponseBody UserDto findUserById(@PathVariable Long userId	) {
+		UserDto dto = service.findUserById(userId);
         return dto;
     }
 	
 	@RequestMapping(value="/id/{userId}", method=RequestMethod.GET)
-    public  @ResponseBody UserDTO moreFindUserById(@PathVariable Long userId	) {
-		UserDTO dto = service.findUserById(userId);
+    public  @ResponseBody UserDto moreFindUserById(@PathVariable Long userId	) {
+		UserDto dto = service.findUserById(userId);
         return dto;
     }
 	
 	@RequestMapping(value="/username/{userName}", method=RequestMethod.GET)
-    public  @ResponseBody UserDTO moreFindUserByUsername(@PathVariable String userName	) {
-		UserDTO dto = service.findUserByUsername(userName);
+    public  @ResponseBody UserDto moreFindUserByUsername(@PathVariable String userName	) {
+		UserDto dto = service.findUserByUsername(userName);
         return dto;
     }
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
-    public  @ResponseBody List<UserDTO> findAll() {
-		List<UserDTO> dtos = service.findAll();
+    public  @ResponseBody List<UserDto> findAll() {
+		List<UserDto> dtos = service.findAll();
         return dtos;
     }
 	

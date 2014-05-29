@@ -2,7 +2,7 @@ package fr.skytech.application.controller.dto;
 
 import java.io.Serializable;
 
-public class UserDTO implements Serializable {
+public class UserDto implements Serializable {
 
 	/**
 	 * 

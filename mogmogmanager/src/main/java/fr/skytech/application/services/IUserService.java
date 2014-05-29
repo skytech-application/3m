@@ -2,12 +2,12 @@ package fr.skytech.application.services;
 
 import java.util.List;
 
-import fr.skytech.application.controller.dto.UserDTO;
+import fr.skytech.application.controller.dto.UserDto;
 
 public interface IUserService {
 
-	public UserDTO findUserById(Long id);
-	public UserDTO findUserByUsername(String username);
-	public List<UserDTO> findAll();
+	public UserDto findUserById(Long id);
+	public UserDto findUserByUsername(String username);
+	public List<UserDto> findAll();
 	
 }

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.skytech.application.adapter.IUserAdapter;
-import fr.skytech.application.controller.dto.UserDTO;
+import fr.skytech.application.controller.dto.UserDto;
 import fr.skytech.application.dao.IUserDao;
 import fr.skytech.application.model.User;
 import fr.skytech.application.services.IUserService;
@@ -22,19 +22,19 @@ public class UserService implements IUserService {
 	@Autowired
 	IUserAdapter adapter;
 	
-	public UserDTO findUserById(Long id) {
+	public UserDto findUserById(Long id) {
 		User user = dao.find(id);
 		return adapter.modelToDTO(user);
 	}
 	
-	public UserDTO findUserByUsername(String username) {
+	public UserDto findUserByUsername(String username) {
 		User user = dao.findUserByUsername(username);
 		return adapter.modelToDTO(user);
 	}
 
-	public List<UserDTO> findAll() {
+	public List<UserDto> findAll() {
 		List<User> users = dao.findAll();
-		List<UserDTO> dtos = new ArrayList<UserDTO>();
+		List<UserDto> dtos = new ArrayList<UserDto>();
 		for(User user : users){
 			dtos.add(adapter.modelToDTO(user));
 		}
