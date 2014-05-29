@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import fr.skytech.application.adapter.IUserAdapter;
 import fr.skytech.application.controller.dto.UserDTO;
-import fr.skytech.application.dao.IUserDAO;
+import fr.skytech.application.dao.IUserDao;
 import fr.skytech.application.model.User;
 import fr.skytech.application.services.IUserService;
 
@@ -17,13 +17,13 @@ import fr.skytech.application.services.IUserService;
 public class UserService implements IUserService {
 
 	@Autowired
-	IUserDAO dao;
+	IUserDao dao;
 	
 	@Autowired
 	IUserAdapter adapter;
 	
-	public UserDTO findUserById(Integer id) {
-		User user = dao.findUserById(id);
+	public UserDTO findUserById(Long id) {
+		User user = dao.find(id);
 		return adapter.modelToDTO(user);
 	}
 	

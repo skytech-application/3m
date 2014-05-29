@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.skytech.application.dao.IUserDao;
 import fr.skytech.application.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,6 +23,7 @@ public class UserTest {
 	@Autowired
 	private SessionFactory sessionFactory;
 	private Session currentSession;
+	private IUserDao userDao;
 
 	@Before
 	public void openSession() {
@@ -33,7 +35,7 @@ public class UserTest {
 		assertEquals(0, currentSession.createQuery("from User").list().size());
 		User user = new User();
 		user.setUsername("admin");
-				
+		
 		currentSession.persist(user);
 		currentSession.flush();
 		assertEquals(1, currentSession.createQuery("from User").list().size());

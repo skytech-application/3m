@@ -6,7 +6,7 @@
   
     <servlet>
 		<servlet-name>Log4JInitServlet</servlet-name>
-		<servlet-class>test.Log4JInitServlet</servlet-class>
+		<servlet-class>fr.skytech.application.log4j.Log4JInitServlet</servlet-class>
 		<init-param>
 			<param-name>log4j-properties-location</param-name>
 			<param-value>WEB-INF/log4j.properties</param-value>

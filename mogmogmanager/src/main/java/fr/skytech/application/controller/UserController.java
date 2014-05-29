@@ -20,13 +20,13 @@ public class UserController  {
 	IUserService service;
 	
 	@RequestMapping(value="/{userId}", method=RequestMethod.GET)
-    public  @ResponseBody UserDTO findUserById(@PathVariable Integer userId	) {
+    public  @ResponseBody UserDTO findUserById(@PathVariable Long userId	) {
 		UserDTO dto = service.findUserById(userId);
         return dto;
     }
 	
 	@RequestMapping(value="/id/{userId}", method=RequestMethod.GET)
-    public  @ResponseBody UserDTO moreFindUserById(@PathVariable Integer userId	) {
+    public  @ResponseBody UserDTO moreFindUserById(@PathVariable Long userId	) {
 		UserDTO dto = service.findUserById(userId);
         return dto;
     }
