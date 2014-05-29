@@ -8,22 +8,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "t_user")
+@Table(name="user")
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
+	@Column(name = "id")
 	private Long id;
 	
-	@Column(nullable = false, unique = true)
+	@Column(name = "username")
 	private String username;
 	
-	@OneToMany
+	@ManyToMany
 	private Set<User> friends;
 	
 	public Long getId() {
