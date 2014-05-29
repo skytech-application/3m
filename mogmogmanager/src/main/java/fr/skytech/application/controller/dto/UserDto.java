@@ -1,6 +1,7 @@
 package fr.skytech.application.controller.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class UserDto implements Serializable {
 
@@ -11,6 +12,7 @@ public class UserDto implements Serializable {
 	
 	Long id;
 	String username;
+	List<UserDto> friends;
 	
 	public Long getId() {
 		return id;
@@ -23,6 +25,12 @@ public class UserDto implements Serializable {
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public List<UserDto> getFriends() {
+		return friends;
+	}
+	public void setFriends(List<UserDto> friends) {
+		this.friends = friends;
 	}
 	
 	

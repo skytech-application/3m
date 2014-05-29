@@ -1,5 +1,8 @@
 package fr.skytech.application.adapter.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import fr.skytech.application.adapter.IUserAdapter;
@@ -10,9 +13,17 @@ import fr.skytech.application.model.User;
 public class UserAdapter implements IUserAdapter{
 
 	public UserDto modelToDTO(User model){
+		//TODO how avoid stack overflow adapter ?
 		UserDto dto = new UserDto();
 		dto.setId(model.getId());
 		dto.setUsername(model.getUsername());
+		List<UserDto> friends = new ArrayList<UserDto>();
+		if(model.getFriends()!= null){
+			for(User user : model.getFriends()){
+				friends.add(modelToDTO(user));
+			}
+		}
+		dto.setFriends(friends);
 		return dto;
 	}
 	
