@@ -1,6 +1,0 @@
-INDEX VERSION 1.3+C:\SkyTech\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-2582845824.index
-730267730.index
-2852184600.index
-3872461764.index
-2887154501.index
