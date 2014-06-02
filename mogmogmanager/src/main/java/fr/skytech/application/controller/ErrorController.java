@@ -13,4 +13,9 @@ public class ErrorController {
         return "error404";
     }
 	
+	@RequestMapping(value="/errors/technical", method=RequestMethod.GET)
+    public String sendTechnicalException() {
+        return "errorTechnical";
+    }
+	
 }
