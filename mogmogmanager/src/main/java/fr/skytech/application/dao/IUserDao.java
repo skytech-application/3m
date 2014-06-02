@@ -2,7 +2,7 @@ package fr.skytech.application.dao;
 
 import fr.skytech.application.model.User;
 
-public interface IUserDao{
+public interface IUserDao extends GenericDao<User, Long>{
 
 	public User findUserByUsername(String username);
 }

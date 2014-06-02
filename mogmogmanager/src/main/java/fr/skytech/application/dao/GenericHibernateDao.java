@@ -7,17 +7,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public abstract class GenericHibernateDao<T, PK extends Serializable>
-		implements GenericDao<T, PK> {
+public abstract class GenericHibernateDao<T, PK extends Serializable>{
 
 	protected Class<T> entityClass;
-
-	@Value("${mock}")
-	protected boolean mock;
 	
 	@PersistenceContext(unitName = "JPAService")
 	private EntityManager entityManager;
