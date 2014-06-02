@@ -37,7 +37,7 @@ public class HibernateFactory {
         try {
             return configureSessionFactory();
         } catch (HibernateException e) {
-            throw new TechnicalException(e);
+            throw new TechnicalException("Impossible de créer la session Hibernate");
         }
     }
     public static SessionFactory getSessionFactory() {

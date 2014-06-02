@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fr.skytech.application.controller.dto.UserDto;
+import fr.skytech.application.exception.FunctionalException;
+import fr.skytech.application.exception.TechnicalException;
 import fr.skytech.application.services.IUserService;
 
 @Controller
@@ -20,15 +22,25 @@ public class UserController  {
 	IUserService service;
 	
 	@RequestMapping(value="/{userId}", method=RequestMethod.GET)
-    public  @ResponseBody UserDto findUserById(@PathVariable Long userId	) {
+    public  @ResponseBody UserDto findUserById(@PathVariable Long userId) {
+        return moreFindUserById(userId);
+    }
+	
+	@RequestMapping(value="/id/", method=RequestMethod.GET)
+    public  @ResponseBody UserDto moreFindUserByIdEmpty() throws TechnicalException,FunctionalException {
+		throw new FunctionalException("ID is mandatory");
+    }
+	
+	@RequestMapping(value="/id/{userId}", method=RequestMethod.GET)
+    public  @ResponseBody UserDto moreFindUserById(@PathVariable Long userId) throws TechnicalException,FunctionalException {
+		if (userId < 0 ) throw new FunctionalException("ID must be positive");
 		UserDto dto = service.findUserById(userId);
         return dto;
     }
 	
-	@RequestMapping(value="/id/{userId}", method=RequestMethod.GET)
-    public  @ResponseBody UserDto moreFindUserById(@PathVariable Long userId	) {
-		UserDto dto = service.findUserById(userId);
-        return dto;
+	@RequestMapping(value="/username/", method=RequestMethod.GET)
+    public  @ResponseBody UserDto moreFindUserByUsernameEmpty() {
+		throw new FunctionalException("Username is mandatory");
     }
 	
 	@RequestMapping(value="/username/{userName}", method=RequestMethod.GET)
@@ -42,5 +54,5 @@ public class UserController  {
 		List<UserDto> dtos = service.findAll();
         return dtos;
     }
-	
+		
 }

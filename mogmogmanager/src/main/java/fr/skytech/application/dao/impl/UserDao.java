@@ -11,8 +11,8 @@ import fr.skytech.application.model.User;
 public class UserDao extends GenericHibernateDao<User, Long> implements
 		IUserDao {
 
-	public User findUserByUsername(String username) {
-		throw new TechnicalException("findUserByUserName not implemented");
+	public User findUserByUsername(String username)  throws TechnicalException {
+		throw new TechnicalException("UserDao.findUserByUserName() not implemented");
 	}
 
 }
