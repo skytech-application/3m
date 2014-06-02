@@ -6,7 +6,7 @@
 <li>Log4J</li>
 <li>JUnit 4</li>
 <li>HSQLDB (for test cases)</li>
-<li>Mock mode</li>
+<li>Technical and functional exception handler with JSON response</li>
 <li>MySQL</li>
 </ul>
 
