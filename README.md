@@ -10,4 +10,11 @@
 <li>MySQL</li>
 </ul>
 
+<h2> Example : </h2>
+
+<pre>
+	<code>http://localhost:8080/mogmogmanager/api/users/9</code>
+	Returns : {"id":9,"username":"User 9"}
+</pre>
+
 contact : skytech.application@gmail.com
