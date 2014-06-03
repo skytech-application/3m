@@ -1,16 +1,15 @@
-package fr.skytech.application.adapter.impl;
+package fr.skytech.application.adapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import fr.skytech.application.adapter.IUserAdapter;
 import fr.skytech.application.controller.dto.UserDto;
 import fr.skytech.application.model.User;
 
 @Component
-public class UserAdapter implements IUserAdapter{
+public class UserAdapter{
 
 	public UserDto modelToDTO(User model){
 		//TODO how avoid stack overflow adapter ?

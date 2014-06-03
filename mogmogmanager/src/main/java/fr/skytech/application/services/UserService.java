@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.skytech.application.adapter.IUserAdapter;
+import fr.skytech.application.adapter.UserAdapter;
 import fr.skytech.application.controller.dto.UserDto;
 import fr.skytech.application.dao.UserDao;
 import fr.skytech.application.exception.FunctionalException;
@@ -21,7 +21,7 @@ public class UserService {
 	UserDao dao;
 	
 	@Autowired
-	IUserAdapter adapter;
+	UserAdapter adapter;
 	
 	public UserDto findUserById(Long id) throws TechnicalException,FunctionalException {
 		User user = dao.find(id);
