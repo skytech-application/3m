@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.skytech.application.dao.IUserDao;
+import fr.skytech.application.dao.UserDao;
 import fr.skytech.application.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -23,7 +23,7 @@ public class UserTest {
 	@Autowired
 	private SessionFactory sessionFactory;
 	private Session currentSession;
-	private IUserDao userDao;
+	private UserDao userDao;
 
 	@Before
 	public void openSession() {

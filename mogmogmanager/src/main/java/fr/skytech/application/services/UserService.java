@@ -1,4 +1,4 @@
-package fr.skytech.application.services.impl;
+package fr.skytech.application.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,18 +8,17 @@ import org.springframework.stereotype.Service;
 
 import fr.skytech.application.adapter.IUserAdapter;
 import fr.skytech.application.controller.dto.UserDto;
-import fr.skytech.application.dao.IUserDao;
+import fr.skytech.application.dao.UserDao;
 import fr.skytech.application.exception.FunctionalException;
 import fr.skytech.application.exception.TechnicalException;
 import fr.skytech.application.model.User;
-import fr.skytech.application.services.IUserService;
 
 
 @Service
-public class UserService implements IUserService {
+public class UserService {
 
 	@Autowired
-	IUserDao dao;
+	UserDao dao;
 	
 	@Autowired
 	IUserAdapter adapter;

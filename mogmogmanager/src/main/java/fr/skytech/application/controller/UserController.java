@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import fr.skytech.application.controller.dto.UserDto;
 import fr.skytech.application.exception.FunctionalException;
 import fr.skytech.application.exception.TechnicalException;
-import fr.skytech.application.services.IUserService;
+import fr.skytech.application.services.UserService;
 
 @Controller
 @RequestMapping("/api/users")
 public class UserController  {
 
 	@Autowired
-	IUserService service;
+	UserService service;
 	
 	@RequestMapping(value="/{userId}", method=RequestMethod.GET)
     public  @ResponseBody UserDto findUserById(@PathVariable Long userId) {
