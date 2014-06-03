@@ -4,10 +4,11 @@
 <li>Spring 4</li>
 <li>Hibernate 3</li>
 <li>Log4J</li>
+<li>ModelMapper</li>
 <li>JUnit 4</li>
-<li>HSQLDB (for test cases)</li>
-<li>Technical and functional exception handler with JSON response</li>
+<li>HSQLDB (for test cases only)</li>
 <li>MySQL</li>
+<li>Technical and functional exception handler with <b>JSON response</b></li>
 </ul>
 
 <h2> Example : </h2>
