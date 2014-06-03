@@ -1,4 +1,4 @@
-package fr.skytech.application.test;
+package fr.skytech.application.test.model;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,7 +17,7 @@ import fr.skytech.application.model.User;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:/test-context.xml"})
 @Transactional
-public class UserTest {
+public class UserModel {
 
 	@Autowired
 	private SessionFactory sessionFactory;
