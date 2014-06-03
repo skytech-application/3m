@@ -1,47 +1,49 @@
 package fr.skytech.application.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import fr.skytech.application.adapter.UserAdapter;
-import fr.skytech.application.controller.dto.UserDto;
+import fr.skytech.application.adapter.GenericAdapter;
 import fr.skytech.application.dao.UserDao;
+import fr.skytech.application.dto.UserDto;
 import fr.skytech.application.exception.FunctionalException;
 import fr.skytech.application.exception.TechnicalException;
 import fr.skytech.application.model.User;
-
 
 @Service
 public class UserService {
 
 	@Autowired
 	UserDao dao;
-	
-	@Autowired
-	UserAdapter adapter;
-	
-	public UserDto findUserById(Long id) throws TechnicalException,FunctionalException {
-		User user = dao.find(id);
-		return adapter.modelToDTO(user);
-	}
-	
-	public UserDto findUserByUsername(String username)  throws TechnicalException,FunctionalException  {
-		User user = dao.findUserByUsername(username);
-		return adapter.modelToDTO(user);
+
+	@Transactional
+	public List<UserDto> findAll() throws TechnicalException,
+			FunctionalException {
+		final GenericAdapter<UserDto, User> adapter = new GenericAdapter<UserDto, User>(
+				UserDto.class, User.class);
+		final List<User> users = this.dao.findAll();
+		final List<UserDto> usersDtos = adapter.modelsToDtos(users);
+		return usersDtos;
 	}
 
-	public List<UserDto> findAll() throws TechnicalException,FunctionalException{
-		List<User> users = dao.findAll();
-		List<UserDto> dtos = new ArrayList<UserDto>();
-		for(User user : users){
-			dtos.add(adapter.modelToDTO(user));
-		}
-		return dtos;
+	public UserDto findUserById(final Long id) throws TechnicalException,
+			FunctionalException {
+		final GenericAdapter<UserDto, User> adapter = new GenericAdapter<UserDto, User>(
+				UserDto.class, User.class);
+		final User user = this.dao.find(id);
+		final UserDto userDto = adapter.modelToDto(user);
+		return userDto;
 	}
 
-	
-	
+	public UserDto findUserByUsername(final String username)
+			throws TechnicalException, FunctionalException {
+		final GenericAdapter<UserDto, User> adapter = new GenericAdapter<UserDto, User>(
+				UserDto.class, User.class);
+		final User user = this.dao.findUserByUsername(username);
+		return adapter.modelToDto(user);
+	}
+
 }

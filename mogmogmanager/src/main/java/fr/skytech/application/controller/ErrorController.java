@@ -16,39 +16,43 @@ import fr.skytech.application.exception.ErrorResource;
 import fr.skytech.application.exception.FunctionalException;
 import fr.skytech.application.exception.TechnicalException;
 
-
 @Controller
 @ControllerAdvice
-public class ErrorController extends ResponseEntityExceptionHandler{
+public class ErrorController extends ResponseEntityExceptionHandler {
 
-	@RequestMapping(value="/errors/404", method=RequestMethod.GET)
-    public String  sendError404() {
-        return "error404";
-    }
-	
-	@RequestMapping(value="/errors/technical", method=RequestMethod.GET)
-	@ExceptionHandler({ TechnicalException.class })
-	public  ResponseEntity<Object> sendTechnicalException(RuntimeException exception, WebRequest request) {
-		TechnicalException technicalException = (TechnicalException) exception;
-        ErrorResource error = new ErrorResource("Technical error : ", technicalException.getMessage());
+	@RequestMapping(value = "/errors/404", method = RequestMethod.GET)
+	public String sendError404() {
+		return "error404";
+	}
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        return handleExceptionInternal(exception, error, headers, HttpStatus.UNPROCESSABLE_ENTITY, request);
-    }
-	
-	@RequestMapping(value="/errors/functionnal", method=RequestMethod.GET)
+	@RequestMapping(value = "/errors/functionnal", method = RequestMethod.GET)
 	@ExceptionHandler({ FunctionalException.class })
-    public  ResponseEntity<Object> sendFunctionnalException(RuntimeException exception, WebRequest request) {
-		FunctionalException functionalException = (FunctionalException) exception;
-        ErrorResource error = new ErrorResource("Functional error : ", functionalException.getMessage());
+	public ResponseEntity<Object> sendFunctionnalException(
+			final RuntimeException exception, final WebRequest request) {
+		final FunctionalException functionalException = (FunctionalException) exception;
+		final ErrorResource error = new ErrorResource("Functional error : ",
+				functionalException.getMessage());
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+		final HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
 
-        return handleExceptionInternal(exception, error, headers, HttpStatus.UNPROCESSABLE_ENTITY, request);
-    }
-	
-	
+		return this.handleExceptionInternal(exception, error, headers,
+				HttpStatus.UNPROCESSABLE_ENTITY, request);
+	}
+
+	@RequestMapping(value = "/errors/technical", method = RequestMethod.GET)
+	@ExceptionHandler({ TechnicalException.class })
+	public ResponseEntity<Object> sendTechnicalException(
+			final RuntimeException exception, final WebRequest request) {
+		final TechnicalException technicalException = (TechnicalException) exception;
+		final ErrorResource error = new ErrorResource("Technical error : ",
+				technicalException.getMessage());
+
+		final HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		return this.handleExceptionInternal(exception, error, headers,
+				HttpStatus.UNPROCESSABLE_ENTITY, request);
+	}
+
 }

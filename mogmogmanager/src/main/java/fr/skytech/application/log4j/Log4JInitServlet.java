@@ -14,24 +14,30 @@ public class Log4JInitServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	public void init(ServletConfig config) throws ServletException {
+	@Override
+	public void init(final ServletConfig config) throws ServletException {
 		System.out.println("Log4JInitServlet is initializing log4j");
-		String log4jLocation = config.getInitParameter("log4j-properties-location");
+		final String log4jLocation = config
+				.getInitParameter("log4j-properties-location");
 
-		ServletContext sc = config.getServletContext();
+		final ServletContext sc = config.getServletContext();
 
 		if (log4jLocation == null) {
-			System.err.println("*** No log4j-properties-location init param, so initializing log4j with BasicConfigurator");
+			System.err
+					.println("*** No log4j-properties-location init param, so initializing log4j with BasicConfigurator");
 			BasicConfigurator.configure();
 		} else {
-			String webAppPath = sc.getRealPath("/");
-			String log4jProp = webAppPath + log4jLocation;
-			File yoMamaYesThisSaysYoMama = new File(log4jProp);
+			final String webAppPath = sc.getRealPath("/");
+			final String log4jProp = webAppPath + log4jLocation;
+			final File yoMamaYesThisSaysYoMama = new File(log4jProp);
 			if (yoMamaYesThisSaysYoMama.exists()) {
 				System.out.println("Initializing log4j with: " + log4jProp);
 				PropertyConfigurator.configure(log4jProp);
 			} else {
-				System.err.println("*** " + log4jProp + " file not found, so initializing log4j with BasicConfigurator");
+				System.err
+						.println("*** "
+								+ log4jProp
+								+ " file not found, so initializing log4j with BasicConfigurator");
 				BasicConfigurator.configure();
 			}
 		}

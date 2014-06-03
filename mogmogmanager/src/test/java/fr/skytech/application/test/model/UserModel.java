@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.skytech.application.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:/test-context.xml"})
+@ContextConfiguration({ "classpath:/test-context.xml" })
 @Transactional
 public class UserModel {
 
@@ -25,56 +25,38 @@ public class UserModel {
 
 	@Before
 	public void openSession() {
-		currentSession = sessionFactory.getCurrentSession();
+		this.currentSession = this.sessionFactory.getCurrentSession();
 	}
 
 	@Test
 	public void user_create() {
-		assertEquals(0, currentSession.createQuery("from User").list().size());
-		User user = new User();
+		assertEquals(0, this.currentSession.createQuery("from User").list()
+				.size());
+		final User user = new User();
 		user.setUsername("admin");
-		
-		currentSession.persist(user);
-		currentSession.flush();
-		assertEquals(1, currentSession.createQuery("from User").list().size());
-	}
-	
-	@Test
-	public void user_add_friends() {
-		assertEquals(0, currentSession.createQuery("from User").list().size());
-		User user = new User();
-		user.setUsername("admin");
-		
-		User friend1 = new User();
-		friend1.setUsername("friend1");
-		currentSession.persist(friend1);
-		
-		User friend2 = new User();
-		friend2.setUsername("friend2");
-		currentSession.persist(friend2);
-		
-		user.getFriends().add(friend1);
-		user.getFriends().add(friend2);
-		
-		currentSession.persist(user);
-		currentSession.flush();
-		
-		User adminUser = (User) currentSession.createQuery("from User where username = 'admin'").uniqueResult();
-		assertEquals(2, adminUser.getFriends().size());
+
+		this.currentSession.persist(user);
+		this.currentSession.flush();
+		assertEquals(1, this.currentSession.createQuery("from User").list()
+				.size());
 	}
 
 	@Test
 	public void user_find_by_username() {
-		User user = new User();
+		final User user = new User();
 		user.setUsername("admin");
-		currentSession.persist(user);
-		currentSession.flush();
-		
-		assertEquals(1,
-				currentSession.createQuery("from User where username = 'admin'")
+		this.currentSession.persist(user);
+		this.currentSession.flush();
+
+		assertEquals(
+				1,
+				this.currentSession
+						.createQuery("from User where username = 'admin'")
 						.list().size());
-		assertEquals(0,
-				currentSession.createQuery("from User where username = 'mrlo'")
+		assertEquals(
+				0,
+				this.currentSession
+						.createQuery("from User where username = 'mrlo'")
 						.list().size());
 	}
 }
