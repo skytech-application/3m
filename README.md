@@ -9,6 +9,7 @@
 <li>JUnit 4</li>
 <li>HSQLDB (for test cases only)</li>
 <li>MySQL</li>
+<li>Bootstrap 3.1.1 (web client)</li>
 <li>Technical and functional exception handler with <b>JSON response</b></li>
 </ul>
 
