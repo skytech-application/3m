@@ -1,8 +1,5 @@
 package fr.skytech.application.exception;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class ErrorResource {
 	private String code;
 	private String message;

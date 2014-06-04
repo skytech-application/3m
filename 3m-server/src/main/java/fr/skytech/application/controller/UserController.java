@@ -28,7 +28,7 @@ public class UserController {
 		return dtos;
 	}
 
-	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{userId}", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
 	public @ResponseBody
 	UserDto findUserById(@PathVariable final Long userId) {
 		return this.moreFindUserById(userId);

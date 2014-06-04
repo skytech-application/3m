@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>3m-client</title>
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.rest.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	    $('#test').click(function(){
+	    	var client = new $.RestClient('/3m-server/api/');
+	    	client.add('users');
+	    	client.users.read('1').success(function(user) {
+	    	    $('#user-id').val(user.id);
+	    	    $('#user-username').val(user.username);
+	    	  });
+	    });
+	    
+	    $('#test2').click(function(){
+	    	var client = new $.RestClient('/3m-server/api/');
+	    	client.add('users');
+	    	client.users.read('2').success(function(user) {
+	    	    $('#user-id').val(user.id);
+	    	    $('#user-username').val(user.username);
+	    	  });
+	    });
+	  });
+	
+
+	</script>
+</head>
+<body>
+	<button id="test">Find User with id 1</button>
+	<button id="test2">Find User with id 2</button>
+	<br />
+	ID : <input type="text" id="user-id"></input>
+	<br />
+    Username : <input type="text" id="user-username"></input>
+</body>
+</html>

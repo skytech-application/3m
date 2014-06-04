@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.skytech.application</groupId>
-	<artifactId>mogmogmanager</artifactId>
+	<artifactId>3m-server</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mogmogmanager Maven Webapp</name>
+	<name>3M Server</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<spring.version>4.0.5.RELEASE</spring.version>
@@ -38,10 +38,11 @@
 			<version>5.1.9</version>
 		</dependency>
 
+		<!-- Jackson JSON Mapper -->
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.2.3</version>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.10</version>
 		</dependency>
 
 		<dependency>
@@ -103,19 +104,13 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>3.6.9.Final</version>
+			<version>4.2.0.Final</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<version>3.5.6-Final</version>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-c3p0</artifactId>
-			<version>4.1.1.Final</version>
+			<version>4.2.0.Final</version>
 		</dependency>
 
 		<dependency>
@@ -153,6 +148,6 @@
 	</dependencies>
 
 	<build>
-		<finalName>mogmogmanager</finalName>
+		<finalName>3m-server</finalName>
 	</build>
 </project>
