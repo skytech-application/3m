@@ -39,7 +39,7 @@
 
 <pre>
 	<code>http://localhost:8080/3m-server/api/users/username/anything</code>
-	Returns : {"code":"Technical error : ","message":"Impossible de find user by username : anything"}
+	Returns : {"code":"Technical error : ","message":"Impossible to find user by username : anything"}
 </pre>
 
 <pre>

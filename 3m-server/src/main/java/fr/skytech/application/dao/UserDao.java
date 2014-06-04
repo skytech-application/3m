@@ -19,7 +19,7 @@ public class UserDao extends GenericHibernateDao<User, Long> {
 			return (User) query.getSingleResult();
 		} catch (final Exception e) {
 			throw new TechnicalException(
-					"Impossible de find user by username : " + username);
+					"Impossible to find user by username : " + username);
 		}
 
 	}
