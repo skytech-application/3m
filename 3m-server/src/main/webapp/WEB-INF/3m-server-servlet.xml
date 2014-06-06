@@ -1,9 +1,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
- xmlns:context="http://www.springframework.org/schema/context"
- xmlns:mvc="http://www.springframework.org/schema/mvc"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xmlns:tx="http://www.springframework.org/schema/tx"
- xsi:schemaLocation="
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
  http://www.springframework.org/schema/mvc 
  http://www.springframework.org/schema/mvc/spring-mvc.xsd
 http://www.springframework.org/schema/beans
@@ -11,72 +10,104 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 http://www.springframework.org/schema/tx
 http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-4.0.xsd">
- 
-    <mvc:annotation-driven />
-    
- <context:component-scan base-package="
+http://www.springframework.org/schema/context/spring-context-4.0.xsd
+http://www.springframework.org/schema/security 
+http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<mvc:annotation-driven />
+
+	<context:component-scan base-package="
      fr.skytech.application.*" />
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/views/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+	<bean
+		class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+	<bean
+		class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
+	<bean
+		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+	<bean
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<bean id="propertyPlaceholder"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:application.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${datasource.driverClassName}" />
+		<property name="url" value="${datasource.url}" />
+		<property name="username" value="${datasource.username}" />
+		<property name="password" value="${datasource.password}" />
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceXmlLocation" value="classpath:persistence.xml" />
+		<property name="persistenceUnitName" value="JPAService" />
+		<property name="dataSource" ref="dataSource" />
+
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+				<property name="showSql" value="true" />
+				<property name="generateDdl" value="true" />
+			</bean>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="false" />
+
+
+	<mvc:resources mapping="/img/**" location="/resources/img/" />
+	<mvc:resources mapping="/js/**" location="/resources/js/" />
+
+
+
+	<security:global-method-security secured-annotations="enabled" />
+	
+	<security:http auto-config="true">
+        <security:intercept-url pattern="/main*" access="ROLE_ADMIN,ROLE_REGULAR_USER" />
+        <security:form-login login-page="/login" default-target-url="/main"
+            authentication-failure-url="/loginError"/>
+    </security:http>
  
- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
- 	<property name="prefix">
- 		<value>/WEB-INF/views/</value>
- 	</property>
- 	<property name="suffix">
- 		<value>.jsp</value>
- 	</property>
- </bean>
-  
- <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
-    <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>    
-    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
-    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user name="alpha" password="pass1" authorities="ROLE_ADMIN" />
+                <security:user name="beta" password="pass2" authorities="ROLE_REGULAR_USER" />
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>
+     
+    	
 
-    <bean id="propertyPlaceholder" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
-        <property name="ignoreResourceNotFound" value="true"/>
-        <property name="locations">
-            <list>
-                <value>classpath:application.properties</value>
-            </list>
-        </property>
-    </bean>
-
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${datasource.driverClassName}"/>
-        <property name="url" value="${datasource.url}"/>
-        <property name="username" value="${datasource.username}"/>
-        <property name="password" value="${datasource.password}"/>
-    </bean>
-
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> 
-        <property name="persistenceXmlLocation" value="classpath:persistence.xml"/>
-        <property name="persistenceUnitName" value="JPAService"/>
-        <property name="dataSource" ref="dataSource"/>
-
-        <property name="jpaVendorAdapter"> 
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"> 
-                <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect"/> 
-                <property name="showSql" value="true" /> 
-                <property name="generateDdl" value="true"/>
-            </bean> 
-        </property>
-        <property name="jpaProperties">
-            <props>
-            	<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
-            </props>
-        </property>
-    </bean>
-
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory"/>
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-
-    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="false"/>
-  
-
- <mvc:resources mapping="/img/**" location="/resources/img/" />
- <mvc:resources mapping="/js/**" location="/resources/js/" />   
- 
 </beans>

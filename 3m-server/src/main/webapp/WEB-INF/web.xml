@@ -4,6 +4,27 @@
 
 <web-app>
   
+    <display-name>Spring Security: Using XML</display-name>
+    
+     <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/3m-server-servlet.xml</param-value>
+    </context-param> 
+    
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+     
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+     
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
     <servlet>
 		<servlet-name>Log4JInitServlet</servlet-name>
 		<servlet-class>fr.skytech.application.log4j.Log4JInitServlet</servlet-class>
@@ -39,5 +60,7 @@
 		<exception-type>fr.skytech.application.exception.FunctionalException</exception-type>
 		<location>/errors/functional</location>
 	</error-page>
-	
+		
+    
+    
 </web-app>
