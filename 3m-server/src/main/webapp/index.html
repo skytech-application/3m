@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.ico">
+
+    <title>SkyTech</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+	
+	<link href="css/datepicker.css" rel="stylesheet">
+	
+    <!-- Custom styles for this template -->
+    <link href="css/skytech.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<script type='text/javascript' src='js/jquery-1.11.1.js'></script>
+	<script type='text/javascript' src='js/bootstrap.min.js'></script>
+	<script type='text/javascript' src='js/bootbox.min.js'></script>
+	<script type='text/javascript' src='js/jquery.mixitup.min.js'></script>
+	<script type='text/javascript' src='js/typeahead.js'></script>
+	<script type='text/javascript' src='js/bootstrap-datepicker.fr.js'></script>
+
+	
+	
+
+<script>
+$(document).ready(function() {
+
+	$('#inscription').click(function(){
+		bootbox.prompt("Quel est votre nom ?", function(result) {
+			if (result !== null) {
+				bootbox.alert('Bienvenue ' + result + ' :)');
+			}
+		});
+	});
+	
+	$(function(){
+	  $('#Container').mixItUp();
+	});
+  
+  
+  var substringMatcher = function(strs) {
+return function findMatches(q, cb) {
+var matches, substringRegex;
+ 
+// an array that will be populated with substring matches
+matches = [];
+ 
+// regex used to determine if a string contains the substring `q`
+substrRegex = new RegExp(q, 'i');
+ 
+// iterate through the pool of strings and for any string that
+// contains the substring `q`, add it to the `matches` array
+$.each(strs, function(i, str) {
+if (substrRegex.test(str)) {
+// the typeahead jQuery plugin expects suggestions to a
+// JavaScript object, refer to typeahead docs for more info
+matches.push({ value: str });
+}
+});
+ 
+cb(matches);
+};
+};
+ 
+var states = ['Naruto','One Piece','Death Note','Ad Astra','Terraformars','Radiant'];
+ 
+$('#the-basics').typeahead({
+hint: true,
+highlight: true,
+minLength: 1
+},
+{
+name: 'states',
+displayKey: 'value',
+source: substringMatcher(states)
+});
+
+
+
+$('#datepicker').datepicker({
+    format: 'dd-mm-yyyy'
+});
+	
+});
+</script>
+
+  </head>
+
+  <body>
+	
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+              <input placeholder="Email" class="form-control" type="email" required>
+            </div>
+            <div class="form-group">
+              <input placeholder="Password" class="form-control" type="password" required>
+            </div>
+            <button type="submit" class="btn btn-success">Se connecter</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+		
+		<div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview</a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Export</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item</a></li>
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+            <li><a href="">More navigation</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+			<div class="jumbotron">
+				  <div class="container">
+					<h1>Ouverture du site !</h1>
+					<p>Les inscriptions sont gratuites bien sur :)</p>
+					<p><a id="inscription" class="btn btn-primary btn-lg" role="button">S'inscrire »</a></p>
+				  </div>
+				</div>
+		
+				<hr>
+	
+				<div class="row">
+					<div class="col-md-4">
+					  <h2>Mangas</h2>
+					  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+					  <p><a class="btn btn-default" href="#" role="button">Découvrir »</a></p>
+					</div>
+					<div class="col-md-4">
+					  <h2>Animes</h2>
+					  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+					  <p><a class="btn btn-default" href="#" role="button">Découvrir »</a></p>
+				   </div>
+					<div class="col-md-4">
+					  <h2>Scans</h2>
+					  <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+					  <p><a class="btn btn-default" href="#" role="button">Découvrir »</a></p>
+					</div>
+				  </div>
+				  
+				
+				<hr>
+				
+				Date time picker :
+				
+				<div class="well">
+					<input class="form-control" type="text" value="02-16-2012" id="datepicker">
+				  </div>
+				
+				<hr>
+				
+				Recherche auto-complete : 
+				
+				<div  class="well">
+					  <input id="the-basics" type="text" class="typeahead form-control skytech-typeahead" placeholder="Nom du manga">
+				</div>
+				
+				<hr>
+				
+				<div class="controls">
+			  <label>Manga :</label>
+			  
+			  <button class="btn btn-default filter" data-filter="all">Tous</button>
+			  <button class="btn btn-default filter" data-filter=".onepiece">One Piece</button>
+			  <button class="btn btn-default filter" data-filter=".naruto">Naruto</button>
+			  
+			  &nbsp;&nbsp;&nbsp;<label>Trie  :</label>
+			  <button class="btn btn-default sort" data-sort="myorder:desc"><-</button>
+			  <button class="btn btn-default sort" data-sort="myorder:asc">-></button>
+			  
+			</div>
+			<div id="Container" class="mixContainer">
+			  <div class="mix naruto" data-myorder="1"><img src="img/naruto/1.jpg"/></div>
+			  <div class="mix naruto" data-myorder="2"><img src="img/naruto/2.jpg"/></div>
+			  <div class="mix naruto" data-myorder="3"><img src="img/naruto/3.jpg"/></div>
+			  <div class="mix naruto" data-myorder="4"><img src="img/naruto/4.jpg"/></div>
+			  <div class="mix naruto" data-myorder="5"><img src="img/naruto/5.jpg"/></div>
+			  <div class="mix naruto" data-myorder="6"><img src="img/naruto/6.jpg"/></div>
+			  
+			  <div class="mix onepiece" data-myorder="1"><img src="img/onepiece/1.jpg"/></div>
+			  <div class="mix onepiece" data-myorder="2"><img src="img/onepiece/2.jpg"/></div>
+			  <div class="mix onepiece" data-myorder="3"><img src="img/onepiece/3.jpg"/></div>
+			  <div class="mix onepiece" data-myorder="4"><img src="img/onepiece/4.jpg"/></div>
+			  <div class="mix onepiece" data-myorder="5"><img src="img/onepiece/5.jpg"/></div>
+			  <div class="mix onepiece" data-myorder="6"><img src="img/onepiece/6.jpg"/></div>
+			  <div class="mix onepiece" data-myorder="7"><img src="img/onepiece/7.jpg"/></div>
+			  
+			  <div class="gap"></div>
+			  <div class="gap"></div>
+			</div>
+				
+				</br>
+				
+				Et si jamais on veut gérer les dates de sorties des mangas, soit direct dans la fiche du manga, soit ça : http://bootstrap-calendar.azurewebsites.net/
+				</br></br>
+				
+				<ul class="breadcrumb">
+					<li class="active">Accueil</li>
+				</ul>
+
+				<ul class="breadcrumb">
+						<li><a href="#">Accueil</a>
+						<li class="active">Naruto</li>
+				</ul>
+
+				<ul class="breadcrumb">
+						<li><a href="#">Accueil</a></li>
+						<li><a href="#">Naruto</a></li>
+						<li class="active">Tome 1</li>
+				</ul>
+
+        </div>
+      </div>
+
+	
+
+	<div class="footer">
+		<p>© SkyTech 2014</p>
+	</div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+</body></html>
