@@ -5,7 +5,7 @@
 <web-app>
   
     <display-name>Spring Security: Using XML</display-name>
-    
+        
      <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/3m-server-servlet.xml</param-value>
@@ -45,10 +45,20 @@
         <servlet-name>3m-server</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    
+       
     <error-page>
 		<error-code>404</error-code>
 		<location>/errors/404</location>
+	</error-page>
+	
+    <error-page>
+		<error-code>403</error-code>
+		<location>/errors/403</location>
+	</error-page>
+	
+    <error-page>
+		<error-code>500</error-code>
+		<location>/errors/500</location>
 	</error-page>
 
     <error-page>

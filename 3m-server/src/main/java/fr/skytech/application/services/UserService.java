@@ -16,6 +16,8 @@ import fr.skytech.application.model.User;
 @Service
 public class UserService {
 
+	// TODO remove Transactional
+
 	@Autowired
 	UserDao dao;
 
@@ -29,6 +31,7 @@ public class UserService {
 		return usersDtos;
 	}
 
+	@Transactional
 	public UserDto findUserById(final Long id) throws TechnicalException,
 			FunctionalException {
 		final GenericAdapter<UserDto, User> adapter = new GenericAdapter<UserDto, User>(

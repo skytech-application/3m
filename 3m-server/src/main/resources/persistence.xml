@@ -4,5 +4,6 @@
              version="1.0">
     <persistence-unit name="JPAService" transaction-type="RESOURCE_LOCAL">
         <class>fr.skytech.application.model.User</class>
+        <class>fr.skytech.application.model.Role</class>
     </persistence-unit>
 </persistence>

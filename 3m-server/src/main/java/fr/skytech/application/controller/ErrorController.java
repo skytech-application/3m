@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
@@ -20,9 +21,9 @@ import fr.skytech.application.exception.TechnicalException;
 @ControllerAdvice
 public class ErrorController extends ResponseEntityExceptionHandler {
 
-	@RequestMapping(value = "/errors/404", method = RequestMethod.GET)
-	public String sendError404() {
-		return "error404";
+	@RequestMapping(value = "/errors/{errorId}", method = RequestMethod.GET)
+	public String sendError(@PathVariable final int errorId) {
+		return "error" + errorId;
 	}
 
 	@RequestMapping(value = "/errors/functionnal", method = RequestMethod.GET)
