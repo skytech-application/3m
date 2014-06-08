@@ -94,21 +94,6 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 	<mvc:resources mapping="/css/**" location="/resources/css/" />
 
 
-
-	<security:global-method-security
-		secured-annotations="enabled" />
-
-	<security:http auto-config="true">
-		<security:intercept-url pattern="/"
-			access="ROLE_ADMIN,ROLE_REGULAR_USER" />
-		<security:form-login login-page="/index"
-			default-target-url="/user/index" authentication-failure-url="/loginError" />
-	</security:http>
-
-	<security:authentication-manager>
-		<security:authentication-provider user-service-ref="securityUserService" />
-	</security:authentication-manager>
-
-
-
+	<import resource="spring-security.xml" />
+	
 </beans>
