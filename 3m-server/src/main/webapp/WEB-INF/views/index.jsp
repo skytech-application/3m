@@ -52,22 +52,27 @@
         <div class="navbar-collapse collapse">
           <form class="navbar-form navbar-right" role="form" name='loginForm' action="<c:url value='j_spring_security_check' />"
         method='POST'>
-            <div class="form-group">
-              <input name='j_username' placeholder="Email" class="form-control" type="email" required>
+            <div class="form-group left-inner-addon">
+            	<span class="glyphicon glyphicon-user"></span>
+              	<input name='j_username' placeholder="Nom d'utilisateur" class="form-control" type="text" required>
             </div>
-            <div class="form-group">
-              <input name='j_password' placeholder="Password" class="form-control" type="password" required>
+            <div class="form-group left-inner-addon">
+            	<span class="glyphicon glyphicon-lock"></span>
+              	<input name='j_password' placeholder="Password" class="form-control" type="password" required>
             </div>
-            <button name="submit" type="submit" class="btn btn-success">Se connecter</button>
+            <button name="submit" type="submit" class="btn btn-info">
+            Se connecter <span class="glyphicon glyphicon-arrow-right"></span></button>
           </form>
         </div><!--/.navbar-collapse -->
       </div>
     </div>
     
+ 
+
         <%
          String errorString = (String)request.getAttribute("error");
          if(errorString != null && errorString.trim().equals("true")){
-            out.println("Your login attempt was unsuccessful. Please retry using correct login name and password.");
+            out.println("Impossible ");
          }
    		%>
    		        <br/>

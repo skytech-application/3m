@@ -1,7 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  
-<html lang="en"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<html lang="fr"><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,32 +48,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span> Project name</a>
         </div>
         <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right" role="form" name='loginForm' action="<c:url value='j_spring_security_check' />"
-        method='POST'>
-            <div class="form-group">
-              <input name='j_username' placeholder="Email" class="form-control" type="email" required>
-            </div>
-            <div class="form-group">
-              <input name='j_password' placeholder="Password" class="form-control" type="password" required>
-            </div>
-            <button name="submit" type="submit" class="btn btn-success">Se connecter</button>
+          <form class="navbar-form navbar-right">
+            <a class="btn btn-info" href="<c:url value="/j_spring_security_logout" />"><span class="glyphicon glyphicon-arrow-left"></span> Se déconnecter </a>
           </form>
+          	
         </div><!--/.navbar-collapse -->
       </div>
     </div>
       		
         <br/>
-         
+         ${principal.name}
         <a href="<c:url value="/admin/index"/>">Admin Page</a>
         <br/>
-
-        <br/>
-        <br/>
-        <br/>
-        <a href="<c:url value="/j_spring_security_logout" />">Logout</a>
          
     </body>
 </html>
