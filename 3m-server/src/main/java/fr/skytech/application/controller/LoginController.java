@@ -12,48 +12,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
 
 	@Secured("ROLE_ADMIN")
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/index", method = RequestMethod.GET)
 	public String admin(final ModelMap model) {
-
-		return "admin_page";
-
+		return "admin/admin_page";
 	}
 
 	@Secured({ "ROLE_REGULAR_USER", "ROLE_ADMIN" })
-	@RequestMapping(value = "/common", method = RequestMethod.GET)
-	public String common(final ModelMap model) {
-
-		return "common_page";
-
-	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(final ModelMap model) {
-
-		return "login_page";
+	@RequestMapping(value = "/user/index", method = RequestMethod.GET)
+	public String connected(final ModelMap model, final Principal principal) {
+		if (principal != null) {
+			final String name = principal.getName();
+			model.addAttribute("username", name);
+		}
+		return "user/index";
 
 	}
 
 	@RequestMapping(value = "/loginError", method = RequestMethod.GET)
 	public String loginerror(final ModelMap model) {
 		model.addAttribute("error", "true");
-		return "login_page";
-
+		return this.userIndex(model);
 	}
 
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(final ModelMap model) {
-
-		return this.login(model);
-
-	}
-
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String printWelcome(final ModelMap model, final Principal principal) {
-
-		final String name = principal.getName();
-		model.addAttribute("username", name);
-		return "main_page";
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String userIndex(final ModelMap model) {
+		return "index";
 
 	}
 

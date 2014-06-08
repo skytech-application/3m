@@ -1,4 +1,4 @@
-package fr.skytech.application.controller;
+package fr.skytech.application.controller.api;
 
 import java.util.List;
 

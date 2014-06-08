@@ -99,10 +99,10 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 		secured-annotations="enabled" />
 
 	<security:http auto-config="true">
-		<security:intercept-url pattern="/main*"
+		<security:intercept-url pattern="/"
 			access="ROLE_ADMIN,ROLE_REGULAR_USER" />
-		<security:form-login login-page="/login"
-			default-target-url="/main" authentication-failure-url="/loginError" />
+		<security:form-login login-page="/index"
+			default-target-url="/user/index" authentication-failure-url="/loginError" />
 	</security:http>
 
 	<security:authentication-manager>
