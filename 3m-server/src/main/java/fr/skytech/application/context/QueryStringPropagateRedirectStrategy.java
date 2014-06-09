@@ -14,7 +14,8 @@ public class QueryStringPropagateRedirectStrategy extends
 	public void sendRedirect(final HttpServletRequest request,
 			final HttpServletResponse response, final String url)
 			throws IOException {
-		final String urlWithOriginalQueryString = url + "?error=login.error";
+		final String urlWithOriginalQueryString = url
+				+ "?error=error.login.connect";
 		super.sendRedirect(request, response, urlWithOriginalQueryString);
 	}
 }

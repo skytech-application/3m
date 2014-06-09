@@ -1,10 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<html lang="en"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
+<html><head>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -38,7 +39,13 @@
     	<div class="container skytech-container">
     		<jsp:include page="common/ErrorPanel.jsp" />
     	</div>
-		
-           
+
+	<div id="footer">
+      <div class="container">
+        <a href="?lang=fr"><img src="<%= request.getContextPath() %>/img/flag/fr.png"/></a> |
+        <a href="?lang=en"><img src="<%= request.getContextPath() %>/img/flag/en.png"/></a>
+      </div>
+    </div>
+    
     </body>
 </html>

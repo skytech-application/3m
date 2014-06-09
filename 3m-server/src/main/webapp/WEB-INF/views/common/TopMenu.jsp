@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -31,23 +31,24 @@
         method='POST'>
             <div class="form-group left-inner-addon">
             	<span class="glyphicon glyphicon-user"></span>
-              	<input name='j_username' placeholder="<spring:message code="login.form.username" />" class="form-control" type="text" required>
+              	<input name='j_username' placeholder="<spring:message code="placeholder.login.form.username" />" class="form-control" type="text" required>
             </div>
             <div class="form-group left-inner-addon">
             	<span class="glyphicon glyphicon-lock"></span>
-              	<input name='j_password' placeholder="<spring:message code="login.form.password" />" class="form-control" type="password" required>
+              	<input name='j_password' placeholder="<spring:message code="placeholder.login.form.password" />" class="form-control" type="password" required>
             </div>
             <button name="submit" type="submit" class="btn btn-info">
-            <spring:message code="login.form.connect" /> <span class="glyphicon glyphicon-arrow-right"></span></button>
+            <spring:message code="placeholder.login.form.connect" /> <span class="glyphicon glyphicon-arrow-right"></span></button>
           </form>
         	</sec:authorize>
         	
           
           <sec:authorize access="isAuthenticated()">
 	        <form class="navbar-form navbar-right">
-	            <a class="btn btn-info" href="<c:url value="/j_spring_security_logout" />"><span class="glyphicon glyphicon-arrow-left"></span> <spring:message code="login.form.disconnect" /> </a>
+	            <a class="btn btn-info" href="<c:url value="/j_spring_security_logout" />"><span class="glyphicon glyphicon-arrow-left"></span> <spring:message code="placeholder.login.form.disconnect" /> </a>
 	          </form>
         	</sec:authorize>
         </div><!--/.navbar-collapse -->
       </div>
     </div>
+    
