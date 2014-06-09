@@ -10,16 +10,22 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 <global-method-security
 		secured-annotations="enabled" />
 
-	<http auto-config="true">
-		<intercept-url pattern="/user/**"
-			access="ROLE_REGULAR_USER,ROLE_ADMIN" />
+	<http auto-config="true" >
 		<intercept-url pattern="/admin/**"
 			access="ROLE_ADMIN" />
-		<form-login login-page="/index"
-			default-target-url="/user/index" authentication-failure-url="/loginError" />
+		<intercept-url pattern="/*"
+			access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<form-login login-page="/index" authentication-failure-handler-ref="authenticationFailureHandler" />
 		<access-denied-handler error-page="/errors/403"/>
 	</http>
+	
+	<beans:bean id="authenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+	    <beans:property name="redirectStrategy" ref="queryStringPropagateRedirectStrategy" />
+	    <beans:property name="defaultFailureUrl" value="/index" />
+	</beans:bean>
 
+	<beans:bean id="queryStringPropagateRedirectStrategy" class="fr.skytech.application.context.QueryStringPropagateRedirectStrategy" />
+	
 	<authentication-manager>
 		<authentication-provider user-service-ref="securityUserService" />
 	</authentication-manager>

@@ -2,6 +2,8 @@ package fr.skytech.application.controller;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,23 +20,15 @@ public class LoginController {
 		return "admin/admin_page";
 	}
 
-	@Secured({ "ROLE_REGULAR_USER", "ROLE_ADMIN" })
-	@RequestMapping(value = "/user/index", method = RequestMethod.GET)
-	public String connected(final ModelMap model, final Principal principal) {
-		model.addAttribute("principal", principal);
-		return "user/index";
-
-	}
-
-	@RequestMapping(value = "/loginError", method = RequestMethod.GET)
-	public String loginerror(final Model model) {
-		model.addAttribute("error", "true");
-		return this.userIndex(model);
-	}
-
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String userIndex(final Model model) {
+	public String connected(final HttpServletRequest request,
+			final Model model, final Principal principal) {
+		if (request.getParameter("error") != null) {
+			model.addAttribute("error", request.getParameter("error"));
+		}
+		model.addAttribute("principal", principal);
 		return "index";
 
 	}
+
 }
