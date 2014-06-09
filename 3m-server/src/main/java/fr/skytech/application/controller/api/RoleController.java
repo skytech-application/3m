@@ -17,7 +17,7 @@ import fr.skytech.application.exception.TechnicalException;
 import fr.skytech.application.services.RoleService;
 
 @Controller
-@RequestMapping("/api/roles")
+@RequestMapping(value = "/api/roles", headers = "Accept=application/json", produces = { "application/json" })
 public class RoleController {
 
 	@Autowired
@@ -33,13 +33,13 @@ public class RoleController {
 		return dtos;
 	}
 
-	@RequestMapping(value = "/{roleId}", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
+	@RequestMapping(value = "/{roleId}", method = RequestMethod.GET)
 	public @ResponseBody
 	RoleDto findRoleById(final Locale locale, @PathVariable final Long roleId) {
 		return this.moreFindRoleById(locale, roleId);
 	}
 
-	@RequestMapping(value = "/id/{roleId}", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
+	@RequestMapping(value = "/id/{roleId}", method = RequestMethod.GET)
 	public @ResponseBody
 	RoleDto moreFindRoleById(final Locale locale,
 			@PathVariable final Long roleId) throws TechnicalException,
@@ -52,7 +52,7 @@ public class RoleController {
 		return dto;
 	}
 
-	@RequestMapping(value = "/id/", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
+	@RequestMapping(value = "/id/", method = RequestMethod.GET)
 	public @ResponseBody
 	RoleDto moreFindUserByIdEmpty(final Locale locale)
 			throws TechnicalException, FunctionalException {
