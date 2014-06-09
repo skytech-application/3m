@@ -17,7 +17,7 @@ import fr.skytech.application.exception.TechnicalException;
 import fr.skytech.application.services.UserService;
 
 @Controller
-@RequestMapping("/api/users")
+@RequestMapping(value = "/api/users", headers = "Accept=application/json", produces = { "application/json" })
 public class UserController {
 
 	@Autowired
@@ -26,20 +26,20 @@ public class UserController {
 	@Autowired
 	UserService service;
 
-	@RequestMapping(value = "/", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
+	@RequestMapping(value = "/")
 	public @ResponseBody
 	List<UserDto> findAll() {
 		final List<UserDto> dtos = this.service.findAll();
 		return dtos;
 	}
 
-	@RequestMapping(value = "/{userId}", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
+	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
 	public @ResponseBody
 	UserDto findUserById(final Locale locale, @PathVariable final Long userId) {
 		return this.moreFindUserById(locale, userId);
 	}
 
-	@RequestMapping(value = "/id/{userId}", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
+	@RequestMapping(value = "/id/{userId}", method = RequestMethod.GET)
 	public @ResponseBody
 	UserDto moreFindUserById(final Locale locale,
 			@PathVariable final Long userId) throws TechnicalException,
@@ -52,7 +52,7 @@ public class UserController {
 		return dto;
 	}
 
-	@RequestMapping(value = "/id/", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
+	@RequestMapping(value = "/id/", method = RequestMethod.GET)
 	public @ResponseBody
 	UserDto moreFindUserByIdEmpty(final Locale locale)
 			throws TechnicalException, FunctionalException {
@@ -60,14 +60,14 @@ public class UserController {
 				"rest.api.users.id.mandatory", new Object[] {}, locale));
 	}
 
-	@RequestMapping(value = "/username/{userName}", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
+	@RequestMapping(value = "/username/{userName}", method = RequestMethod.GET)
 	public @ResponseBody
 	UserDto moreFindUserByUsername(@PathVariable final String userName) {
 		final UserDto dto = this.service.findUserByUsername(userName);
 		return dto;
 	}
 
-	@RequestMapping(value = "/username/", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
+	@RequestMapping(value = "/username/", method = RequestMethod.GET)
 	public @ResponseBody
 	UserDto moreFindUserByUsernameEmpty(final Locale locale) {
 		throw new FunctionalException(this.applicationContext.getMessage(
