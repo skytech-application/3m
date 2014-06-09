@@ -1,19 +1,17 @@
 <h2>The authentic 3M project ;)</h2>
 <hr>
 <ul>
-<li>Spring 4</li>
+<li>Spring 4 - MVC</li>
+<li>Spring Security</li>
 <li>Hibernate 3</li>
 <li>Log4J</li>
 <li>ModelMapper</li>
-<li>REST API</li>
 <li>JUnit 4</li>
 <li>HSQLDB (for test cases only)</li>
 <li>MySQL</li>
-<li>Bootstrap 3.1.1 (web client)</li>
+<li>Bootstrap 3 (web client)</li>
 <li>Technical and functional exception handler with <b>JSON response</b></li>
 </ul>
-
-<h3>NEW ! Web project for client side with JQuery REST</h3>
 
 <h2> Example : </h2>
 
