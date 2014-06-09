@@ -15,6 +15,10 @@ public class RoleDto implements Serializable, GrantedAuthority {
 	Long id;
 	String name;
 
+	// A ignorer car sinon le getter est appellé automatiquement par Jackson
+	// pour la sérialisation
+	// ce qui provoque une exception de LazyLoading, la session hibernate est
+	// fermée ici.
 	@JsonIgnore
 	public String getAuthority() {
 		return this.getName();
