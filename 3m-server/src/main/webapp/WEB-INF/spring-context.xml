@@ -13,7 +13,7 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 	<context:component-scan base-package="
      fr.skytech.application.*" />
-	
+
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
@@ -30,16 +30,18 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 		class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
 	<bean
 		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
-	
-		<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-	        <property name="defaultLocale" value="fr" />
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="fr" />
+	</bean>
+
+
+	<mvc:interceptors>
+		<bean id="localeChangeInterceptor"
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="lang" />
 		</bean>
-
-
-		<mvc:interceptors>
-		    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-		        <property name="paramName" value="lang" />
-		    </bean>
-		</mvc:interceptors>
+	</mvc:interceptors>
 
 </beans>
