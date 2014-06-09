@@ -35,18 +35,18 @@ public class UserController {
 
 	@RequestMapping(value = "/{userId}", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
 	public @ResponseBody
-	UserDto findUserById(@PathVariable final Long userId) {
-		return this.moreFindUserById(userId);
+	UserDto findUserById(final Locale locale, @PathVariable final Long userId) {
+		return this.moreFindUserById(locale, userId);
 	}
 
 	@RequestMapping(value = "/id/{userId}", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
 	public @ResponseBody
-	UserDto moreFindUserById(@PathVariable final Long userId)
-			throws TechnicalException, FunctionalException {
+	UserDto moreFindUserById(final Locale locale,
+			@PathVariable final Long userId) throws TechnicalException,
+			FunctionalException {
 		if (userId < 0) {
 			throw new FunctionalException(this.applicationContext.getMessage(
-					"rest.api.users.id.positive", new Object[] {},
-					Locale.FRENCH));
+					"rest.api.users.id.positive", new Object[] {}, locale));
 		}
 		final UserDto dto = this.service.findUserById(userId);
 		return dto;
@@ -54,9 +54,10 @@ public class UserController {
 
 	@RequestMapping(value = "/id/", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
 	public @ResponseBody
-	UserDto moreFindUserByIdEmpty() throws TechnicalException,
-			FunctionalException {
-		throw new FunctionalException("ID is mandatory");
+	UserDto moreFindUserByIdEmpty(final Locale locale)
+			throws TechnicalException, FunctionalException {
+		throw new FunctionalException(this.applicationContext.getMessage(
+				"rest.api.users.id.mandatory", new Object[] {}, locale));
 	}
 
 	@RequestMapping(value = "/username/{userName}", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
@@ -68,8 +69,9 @@ public class UserController {
 
 	@RequestMapping(value = "/username/", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
 	public @ResponseBody
-	UserDto moreFindUserByUsernameEmpty() {
-		throw new FunctionalException("Username is mandatory");
+	UserDto moreFindUserByUsernameEmpty(final Locale locale) {
+		throw new FunctionalException(this.applicationContext.getMessage(
+				"rest.api.users.username.mandatory", new Object[] {}, locale));
 	}
 
 }
