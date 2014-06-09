@@ -34,7 +34,7 @@ public class UserController {
 		return this.moreFindUserById(userId);
 	}
 
-	@RequestMapping(value = "/id/{userId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/id/{userId}", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
 	public @ResponseBody
 	UserDto moreFindUserById(@PathVariable final Long userId)
 			throws TechnicalException, FunctionalException {
@@ -45,21 +45,21 @@ public class UserController {
 		return dto;
 	}
 
-	@RequestMapping(value = "/id/", method = RequestMethod.GET)
+	@RequestMapping(value = "/id/", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
 	public @ResponseBody
 	UserDto moreFindUserByIdEmpty() throws TechnicalException,
 			FunctionalException {
 		throw new FunctionalException("ID is mandatory");
 	}
 
-	@RequestMapping(value = "/username/{userName}", method = RequestMethod.GET)
+	@RequestMapping(value = "/username/{userName}", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
 	public @ResponseBody
 	UserDto moreFindUserByUsername(@PathVariable final String userName) {
 		final UserDto dto = this.service.findUserByUsername(userName);
 		return dto;
 	}
 
-	@RequestMapping(value = "/username/", method = RequestMethod.GET)
+	@RequestMapping(value = "/username/", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
 	public @ResponseBody
 	UserDto moreFindUserByUsernameEmpty() {
 		throw new FunctionalException("Username is mandatory");
