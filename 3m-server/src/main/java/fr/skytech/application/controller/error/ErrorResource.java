@@ -1,4 +1,4 @@
-package fr.skytech.application.exception;
+package fr.skytech.application.controller.error;
 
 public class ErrorResource {
 	private String code;

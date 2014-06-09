@@ -1,4 +1,4 @@
-package fr.skytech.application.controller;
+package fr.skytech.application.controller.error;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import fr.skytech.application.exception.ErrorResource;
 import fr.skytech.application.exception.FunctionalException;
 import fr.skytech.application.exception.TechnicalException;
 
