@@ -34,7 +34,7 @@ public class RoleController {
 		return this.moreFindRoleById(roleId);
 	}
 
-	@RequestMapping(value = "/id/{roleId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/id/{roleId}", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
 	public @ResponseBody
 	RoleDto moreFindRoleById(@PathVariable final Long roleId)
 			throws TechnicalException, FunctionalException {
@@ -45,7 +45,7 @@ public class RoleController {
 		return dto;
 	}
 
-	@RequestMapping(value = "/id/", method = RequestMethod.GET)
+	@RequestMapping(value = "/id/", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
 	public @ResponseBody
 	RoleDto moreFindUserByIdEmpty() throws TechnicalException,
 			FunctionalException {
