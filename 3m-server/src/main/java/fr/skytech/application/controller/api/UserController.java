@@ -26,7 +26,7 @@ public class UserController {
 	@Autowired
 	UserService service;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/", headers = "Accept=application/json", method = RequestMethod.GET, produces = { "application/json" })
 	public @ResponseBody
 	List<UserDto> findAll() {
 		final List<UserDto> dtos = this.service.findAll();
