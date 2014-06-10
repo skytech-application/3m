@@ -17,7 +17,7 @@ public class LoginController {
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(value = "/admin/index", method = RequestMethod.GET)
 	public String admin(final ModelMap model) {
-		return "admin/admin_page";
+		return "admin/index";
 	}
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)

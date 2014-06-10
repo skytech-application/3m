@@ -21,9 +21,8 @@
         <ul class="nav navbar-nav">
 	        
 	        <sec:authorize url="/admin/index">
-	        	<li><a href="<%= request.getContextPath() %>/admin/index">Administration</a></li>
+	        	<li <%= request.getServletPath().equals("/WEB-INF/views/admin/index.jsp") ? "class=\"active\"" : "" %>><a href="<%= request.getContextPath() %>/admin/index">Administration</a></li>
 	        </sec:authorize>
-	        
         </ul>
           
         <sec:authorize access="!isAuthenticated()">
