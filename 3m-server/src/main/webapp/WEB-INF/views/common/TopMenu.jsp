@@ -27,24 +27,18 @@
         </ul>
           
         <sec:authorize access="!isAuthenticated()">
-	        <form class="navbar-form navbar-right" role="form" name='loginForm' action="<c:url value='j_spring_security_check' />"
-        method='POST'>
-            <div class="form-group left-inner-addon">
-            	<span class="glyphicon glyphicon-user"></span>
-              	<input name='j_username' placeholder="<spring:message code="placeholder.login.form.username" />" class="form-control" type="text" required>
-            </div>
-            <div class="form-group left-inner-addon">
-            	<span class="glyphicon glyphicon-lock"></span>
-              	<input name='j_password' placeholder="<spring:message code="placeholder.login.form.password" />" class="form-control" type="password" required>
-            </div>
-            <button name="submit" type="submit" class="btn btn-info">
-            <spring:message code="placeholder.login.form.connect" /> <span class="glyphicon glyphicon-arrow-right"></span></button>
-          </form>
+        <form class="navbar-form navbar-right">
+         
+            <a href="<%= request.getContextPath() %>/login" type="submit" class="btn btn-info">
+            <spring:message code="placeholder.login.form.connect" /> <span class="glyphicon glyphicon-arrow-right"></span></a>
+            </form>
         	</sec:authorize>
         	
           
           <sec:authorize access="isAuthenticated()">
 	        <form class="navbar-form navbar-right">
+	        	<button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-user"></span>
+	        	 <sec:authentication property="principal.username" /></button>
 	            <a class="btn btn-info" href="<c:url value="/j_spring_security_logout" />"><span class="glyphicon glyphicon-arrow-left"></span> <spring:message code="placeholder.login.form.disconnect" /> </a>
 	          </form>
         	</sec:authorize>

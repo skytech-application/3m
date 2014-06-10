@@ -21,13 +21,27 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String connected(final HttpServletRequest request,
-			final Model model, final Principal principal) {
-		if (request.getParameter("error") != null) {
-			model.addAttribute("error", request.getParameter("error"));
-		}
+	public String index(final HttpServletRequest request, final Model model,
+			final Principal principal) {
 		model.addAttribute("principal", principal);
 		return "index";
+
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(final HttpServletRequest request, final Model model,
+			final Principal principal) {
+		model.addAttribute("principal", principal);
+		return "login";
+
+	}
+
+	@RequestMapping(value = "/loginError", method = RequestMethod.GET)
+	public String loginError(final HttpServletRequest request,
+			final Model model, final Principal principal) {
+		model.addAttribute("error", "error.login.connect");
+		model.addAttribute("principal", principal);
+		return this.login(request, model, principal);
 
 	}
 
