@@ -24,7 +24,9 @@
 <!-- Custom styles for this template -->
 <link href="<%=request.getContextPath()%>/css/signin.css"
 	rel="stylesheet">
-
+<link href="<%=request.getContextPath()%>/css/skytech.css"
+	rel="stylesheet">
+	
 <!-- Just for debugging purposes. Don't actually copy this line! -->
 <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -40,16 +42,18 @@
 	<div class="container">
 		<form class="form-signin" role="form" name='loginForm' action="<c:url value='j_spring_security_check' />"
         method='POST'>
-			<h2 class="form-signin-heading">Please sign in</h2>
-			<input name='j_username' placeholder="<spring:message code="placeholder.login.form.username" />" class="form-control" type="text" required>
-			<input name='j_password' placeholder="<spring:message code="placeholder.login.form.password" />" class="form-control" type="password" required>
+			<h2 class="form-signin-heading"><spring:message code="page.login.form.placeholder.title" /></h2>
+			<input name='j_username' placeholder="<spring:message code="page.login.form.placeholder.username" />" class="form-control" type="text" required>
+			<input name='j_password' placeholder="<spring:message code="page.login.form.placeholder.password" />" class="form-control" type="password" required>
 			<jsp:include page="common/ErrorPanel.jsp" />
 			<button name="submit" type="submit" class="btn btn-lg btn-primary btn-block">
-            <spring:message code="placeholder.login.form.connect" /> <span class="glyphicon glyphicon-arrow-right"></span></button>
+            <spring:message code="page.login.form.placeholder.connect" /> <span class="glyphicon glyphicon-arrow-right"></span></button>
 		</form>
 
 	</div>
 	<!-- /container -->
-
+	
+	<jsp:include page="common/Footer.jsp" />
+	
 </body>
 </html>
