@@ -41,5 +41,7 @@
 		
 		<p>This is admin page !</p>
            
+        <jsp:include page="../common/Footer.jsp" />
+           
     </body>
 </html>
