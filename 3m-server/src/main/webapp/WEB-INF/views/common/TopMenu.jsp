@@ -21,7 +21,7 @@
         <ul class="nav navbar-nav">
 	        
 	        <sec:authorize url="/admin/index">
-	        	<li <%= request.getServletPath().equals("/WEB-INF/views/admin/index.jsp") ? "class=\"active\"" : "" %>><a href="<%= request.getContextPath() %>/admin/index">Administration</a></li>
+	        	<li <%= request.getServletPath().equals("/WEB-INF/views/admin/index.jsp") ? "class=\"active\"" : "" %>><a href="<%= request.getContextPath() %>/admin/index"><spring:message code="menu.administration" /></a></li>
 	        </sec:authorize>
         </ul>
           
@@ -29,7 +29,7 @@
         <form class="navbar-form navbar-right">
          
             <a href="<%= request.getContextPath() %>/login" type="submit" class="btn btn-info">
-            <spring:message code="placeholder.login.form.connect" /> <span class="glyphicon glyphicon-arrow-right"></span></a>
+            <spring:message code="page.login.form.placeholder.connect" /> <span class="glyphicon glyphicon-arrow-right"></span></a>
             </form>
         	</sec:authorize>
         	
@@ -38,7 +38,7 @@
 	        <form class="navbar-form navbar-right">
 	        	<button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-user"></span>
 	        	 <sec:authentication property="principal.username" /></button>
-	            <a class="btn btn-info" href="<c:url value="/j_spring_security_logout" />"><span class="glyphicon glyphicon-arrow-left"></span> <spring:message code="placeholder.login.form.disconnect" /> </a>
+	            <a class="btn btn-info" href="<c:url value="/j_spring_security_logout" />"><span class="glyphicon glyphicon-arrow-left"></span> <spring:message code="page.login.form.placeholder.disconnect" /> </a>
 	          </form>
         	</sec:authorize>
         </div><!--/.navbar-collapse -->
