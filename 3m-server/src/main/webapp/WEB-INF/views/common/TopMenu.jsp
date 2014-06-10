@@ -14,14 +14,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/3m-server/index"><spring:message code="application.name" /></a>
+          <a class="navbar-brand" href="<%= request.getContextPath() %>/index"><spring:message code="application.name" /></a>
         </div>
         <div class="navbar-collapse collapse">
         
         <ul class="nav navbar-nav">
 	        
 	        <sec:authorize url="/admin/index">
-	        	<li><a href="/3m-server/admin/index">Administration</a></li>
+	        	<li><a href="<%= request.getContextPath() %>/admin/index">Administration</a></li>
 	        </sec:authorize>
 	        
         </ul>

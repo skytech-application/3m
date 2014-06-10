@@ -38,6 +38,8 @@
     	<jsp:include page="common/TopMenu.jsp" />
     	<div class="container skytech-container">
     		<jsp:include page="common/ErrorPanel.jsp" />
+    		
+    		
     	</div>
 
 	<div id="footer">
