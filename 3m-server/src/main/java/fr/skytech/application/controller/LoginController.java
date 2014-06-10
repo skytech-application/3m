@@ -1,9 +1,5 @@
 package fr.skytech.application.controller;
 
-import java.security.Principal;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,27 +17,21 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String index(final HttpServletRequest request, final Model model,
-			final Principal principal) {
-		model.addAttribute("principal", principal);
+	public String index(final Model model) {
 		return "index";
 
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(final HttpServletRequest request, final Model model,
-			final Principal principal) {
-		model.addAttribute("principal", principal);
+	public String login(final Model model) {
 		return "login";
 
 	}
 
 	@RequestMapping(value = "/loginError", method = RequestMethod.GET)
-	public String loginError(final HttpServletRequest request,
-			final Model model, final Principal principal) {
+	public String loginError(final Model model) {
 		model.addAttribute("error", "error.login.connect");
-		model.addAttribute("principal", principal);
-		return this.login(request, model, principal);
+		return this.login(model);
 
 	}
 
