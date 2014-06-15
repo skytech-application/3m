@@ -10,6 +10,22 @@ import fr.skytech.application.model.User;
 @Repository
 public class UserDao extends GenericHibernateDao<User, Long> {
 
+	public boolean existEmail(final String email) {
+		try {
+			final Query query = this.entityManager
+					.createQuery("from User u where u.email = :email");
+			query.setParameter("email", email);
+			if (query.getResultList().size() == 0) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch (final Exception e) {
+			return false;
+		}
+
+	}
+
 	public boolean existUsername(final String username) {
 		try {
 			final Query query = this.entityManager

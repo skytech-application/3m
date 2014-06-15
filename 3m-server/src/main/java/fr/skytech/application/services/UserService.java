@@ -64,7 +64,11 @@ public class UserService {
 		if (user.getId() == null) {
 			// Si un user existe déjà avec ce username
 			if (this.userDao.existUsername(user.getUsername())) {
-				throw new FunctionalException("rest.api.users.exists");
+				throw new FunctionalException(
+						"rest.api.users.subscribe.username.exists");
+			} else if (this.userDao.existEmail(user.getEmail())) {
+				throw new FunctionalException(
+						"rest.api.users.subscribe.email.exists");
 			} else {
 				// On active l'utilisateur par défaut
 				toSave.setEnabled(true);
