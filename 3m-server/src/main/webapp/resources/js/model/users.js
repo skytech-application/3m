@@ -14,3 +14,9 @@ function find(id,callback){
 		  callback(data);
 	});
 }
+
+function findAll(callback){
+	mangaNetworkApi.users.read().done(function (data){
+		  callback(data);
+	});
+}
