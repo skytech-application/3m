@@ -9,14 +9,18 @@ function create(user, callbackSuccess, callbackFail) {
 	});
 }
 
-function find(id,callback){
-	mangaNetworkApi.users.read(id).done(function (data){
-		  callback(data);
+function find(id, callbackSuccess, callbackFail){
+	mangaNetworkApi.users.read(id).fail(function(data){
+		callbackFail(data);
+	}).done(function(data){
+		callbackSuccess(data);
 	});
 }
 
-function findAll(callback){
-	mangaNetworkApi.users.read().done(function (data){
-		  callback(data);
+function findAll(callbackSuccess, callbackFail){
+	mangaNetworkApi.users.read().fail(function(data){
+		callbackFail(data);
+	}).done(function(data){
+		callbackSuccess(data);
 	});
 }
