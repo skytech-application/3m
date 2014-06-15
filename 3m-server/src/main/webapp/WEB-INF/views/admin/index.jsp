@@ -30,6 +30,9 @@
 
 	<script type='text/javascript' src='<%= request.getContextPath() %>/js/jquery-2.1.1.min.js'></script>
 	<script type='text/javascript' src='<%= request.getContextPath() %>/js/bootstrap.min.js'></script>
+	<script type='text/javascript' src='<%= request.getContextPath() %>/js/rest.js'></script>
+	<script type='text/javascript' src='<%= request.getContextPath() %>/js/model/users.js'></script>
+	<script type='text/javascript' src='<%= request.getContextPath() %>/js/controllers/admin.js'></script>
 	
  </head>
     <body>
@@ -37,11 +40,10 @@
     	<jsp:include page="../common/TopMenu.jsp" />
     	<div class="container skytech-container">
     		
-    		
+    	<jsp:include page="completeUsersList.jsp" />
     	
     	</div>
 		
-		<p>This is admin page !</p>
            
         <jsp:include page="../common/Footer.jsp" />
            
