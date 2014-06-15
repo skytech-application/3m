@@ -1,5 +1,9 @@
 package fr.skytech.application.controller.error;
 
+import java.util.Locale;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,18 +24,24 @@ import fr.skytech.application.exception.TechnicalException;
 @ControllerAdvice
 public class ErrorController extends ResponseEntityExceptionHandler {
 
+	@Autowired
+	private ApplicationContext applicationContext;
+
 	@RequestMapping(value = "/errors/{errorId}", method = RequestMethod.GET)
 	public String sendError(@PathVariable final int errorId) {
 		return "error" + errorId;
 	}
 
-	@RequestMapping(value = "/errors/functionnal", method = RequestMethod.GET)
+	@RequestMapping(value = "/errors/functional", method = RequestMethod.GET)
 	@ExceptionHandler({ FunctionalException.class })
-	public ResponseEntity<Object> sendFunctionnalException(
-			final RuntimeException exception, final WebRequest request) {
+	public ResponseEntity<Object> sendFunctionalException(
+			final RuntimeException exception, final WebRequest request,
+			final Locale locale) {
 		final FunctionalException functionalException = (FunctionalException) exception;
 		final ErrorResource error = new ErrorResource("Functional error : ",
-				functionalException.getMessage());
+				this.applicationContext.getMessage(
+						functionalException.getMessage(), new Object[] {},
+						locale));
 
 		final HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -43,10 +53,13 @@ public class ErrorController extends ResponseEntityExceptionHandler {
 	@RequestMapping(value = "/errors/technical", method = RequestMethod.GET)
 	@ExceptionHandler({ TechnicalException.class })
 	public ResponseEntity<Object> sendTechnicalException(
-			final RuntimeException exception, final WebRequest request) {
+			final RuntimeException exception, final WebRequest request,
+			final Locale locale) {
 		final TechnicalException technicalException = (TechnicalException) exception;
 		final ErrorResource error = new ErrorResource("Technical error : ",
-				technicalException.getMessage());
+				this.applicationContext.getMessage(
+						technicalException.getMessage(), new Object[] {},
+						locale));
 
 		final HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -54,5 +67,4 @@ public class ErrorController extends ResponseEntityExceptionHandler {
 		return this.handleExceptionInternal(exception, error, headers,
 				HttpStatus.UNPROCESSABLE_ENTITY, request);
 	}
-
 }

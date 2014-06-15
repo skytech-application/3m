@@ -325,3 +325,15 @@ body {
   padding-top:8px;
   background-color: #f5f5f5;
 }
+
+.login-panel{
+	padding:1px;
+}
+
+.manga-network-error-panel{
+	display : none;	
+}
+
+.manga-network-info-panel{
+	display : none;	
+}

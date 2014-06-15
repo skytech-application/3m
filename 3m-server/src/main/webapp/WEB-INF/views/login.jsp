@@ -27,6 +27,11 @@
 <link href="<%=request.getContextPath()%>/css/skytech.css"
 	rel="stylesheet">
 	
+<script type='text/javascript' src='<%= request.getContextPath() %>/js/jquery-2.1.1.min.js'></script>
+<script type='text/javascript' src='<%= request.getContextPath() %>/js/rest.js'></script>
+<script type='text/javascript' src='<%= request.getContextPath() %>/js/model/users.js'></script>
+<script type='text/javascript' src='<%= request.getContextPath() %>/js/controllers/subscribe.js'></script>
+
 <!-- Just for debugging purposes. Don't actually copy this line! -->
 <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -35,21 +40,34 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 <body>
 
 	<div class="container">
-		<form class="form-signin" role="form" name='loginForm' action="<c:url value='j_spring_security_check' />"
-        method='POST'>
-			<h2 class="form-signin-heading"><spring:message code="page.login.form.placeholder.title" /></h2>
-			<input name='j_username' placeholder="<spring:message code="page.login.form.placeholder.username" />" class="form-control" type="text" required>
-			<input name='j_password' placeholder="<spring:message code="page.login.form.placeholder.password" />" class="form-control" type="password" required>
-			<jsp:include page="common/ErrorPanel.jsp" />
-			<button name="submit" type="submit" class="btn btn-lg btn-primary btn-block">
-            <spring:message code="page.login.form.placeholder.connect" /> <span class="glyphicon glyphicon-arrow-right"></span></button>
-		</form>
-
+		<div class="row">
+			<div class="col-xs-12 col-md-4 col-md-offset-2">
+				<div class="panel panel-primary">
+					<div class="panel-heading login-panel">
+			        <h3><spring:message code="page.login.form.placeholder.title" /></h3>
+			      </div>
+		      		<div class="panel-body">
+					<form class="form-signin" role="form" name='loginForm' action="<c:url value='j_spring_security_check' />"
+			        method='POST'>
+						<input name='j_username' placeholder="<spring:message code="page.login.form.placeholder.username" />" class="form-control" type="text" required>
+						<input name='j_password' placeholder="<spring:message code="page.login.form.placeholder.password" />" class="form-control" type="password" required>
+						
+						<button name="submit" type="submit" class="btn btn-lg btn-primary btn-block">
+			            <spring:message code="page.login.form.placeholder.connect" /></button>
+					</form>
+					</div>
+				</div>
+			</div>
+	
+			<jsp:include page="subscribe/subscribe.jsp" />
+			
+		</div>
+		
+		
 	</div>
 	<!-- /container -->
 	

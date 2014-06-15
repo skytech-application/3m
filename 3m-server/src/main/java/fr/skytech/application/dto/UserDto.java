@@ -2,7 +2,7 @@ package fr.skytech.application.dto;
 
 import java.io.Serializable;
 
-public class UserDto implements Serializable {
+public class UserDto extends ControllerResponseDto implements Serializable {
 
 	/**
 	 * 
@@ -12,8 +12,13 @@ public class UserDto implements Serializable {
 	Long id;
 	String username;
 	String password;
+	String email;
 	boolean enabled;
 	RoleDto role;
+
+	public String getEmail() {
+		return this.email;
+	}
 
 	public Long getId() {
 		return this.id;
@@ -33,6 +38,10 @@ public class UserDto implements Serializable {
 
 	public boolean isEnabled() {
 		return this.enabled;
+	}
+
+	public void setEmail(final String email) {
+		this.email = email;
 	}
 
 	public void setEnabled(final boolean enabled) {

@@ -29,7 +29,7 @@
         <form class="navbar-form navbar-right">
          
             <a href="<%= request.getContextPath() %>/login" type="submit" class="btn btn-info">
-            <spring:message code="page.login.form.placeholder.connect" /> <span class="glyphicon glyphicon-arrow-right"></span></a>
+            <spring:message code="page.login.form.placeholder.title" /></a>
             </form>
         	</sec:authorize>
         	
