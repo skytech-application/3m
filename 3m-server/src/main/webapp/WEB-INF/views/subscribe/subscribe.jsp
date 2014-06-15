@@ -10,6 +10,7 @@
       		<div class="panel-body">
 			<form id="subscribeForm" class="form-signin" name='subscribeForm'
 	        method='POST'>
+				<input id='subscribeEmail' placeholder="<spring:message code="page.login.form.placeholder.email" />" class="form-control" type="email" required>
 				<input id='subscribeUsername' placeholder="<spring:message code="page.login.form.placeholder.username" />" class="form-control" type="text" required>
 				<input id='subscribePassword' placeholder="<spring:message code="page.login.form.placeholder.password" />" class="form-control" type="password" required>
 				<div id="subscribeErrorPanel" class="alert alert-danger manga-network-error-panel"></div>

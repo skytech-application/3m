@@ -25,12 +25,19 @@ public class User {
 	@Column(name = "password")
 	private String password;
 
+	@Column(name = "email")
+	private String email;
+
 	@Column(name = "enabled")
 	private boolean enabled;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "role", nullable = false)
 	private Role role;
+
+	public String getEmail() {
+		return this.email;
+	}
 
 	public Long getId() {
 		return this.id;
@@ -50,6 +57,10 @@ public class User {
 
 	public boolean isEnabled() {
 		return this.enabled;
+	}
+
+	public void setEmail(final String email) {
+		this.email = email;
 	}
 
 	public void setEnabled(final boolean enabled) {

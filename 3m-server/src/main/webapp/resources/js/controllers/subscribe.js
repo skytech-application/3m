@@ -4,6 +4,7 @@ $(document).ready(function() {
 		$('#subscribeErrorPanel').hide();
 		e.preventDefault();
 		var user = {
+				email : $('#subscribeEmail').val(),
 				username : $('#subscribeUsername').val(),
 				password : $('#subscribePassword').val()
 		}
