@@ -2,8 +2,9 @@ package fr.skytech.application.dto;
 
 import java.io.Serializable;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class RoleDto implements Serializable, GrantedAuthority {
 

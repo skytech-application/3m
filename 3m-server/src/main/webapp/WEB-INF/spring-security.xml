@@ -19,8 +19,6 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 		<access-denied-handler error-page="/errors/403"/>
 	</http>
 
-	<beans:bean id="queryStringPropagateRedirectStrategy" class="fr.skytech.application.context.QueryStringPropagateRedirectStrategy" />
-	
 	<authentication-manager>
 		<authentication-provider user-service-ref="securityUserService" />
 	</authentication-manager>

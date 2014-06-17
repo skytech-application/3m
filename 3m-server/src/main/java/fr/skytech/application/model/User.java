@@ -1,5 +1,7 @@
 package fr.skytech.application.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "user")
@@ -35,6 +39,10 @@ public class User {
 	@JoinColumn(name = "role", nullable = false)
 	private Role role;
 
+	@Column(name = "subscribeDate")
+	@Temporal(TemporalType.DATE)
+	private Date subscribeDate;
+
 	public String getEmail() {
 		return this.email;
 	}
@@ -49,6 +57,10 @@ public class User {
 
 	public Role getRole() {
 		return this.role;
+	}
+
+	public Date getSubscribeDate() {
+		return this.subscribeDate;
 	}
 
 	public String getUsername() {
@@ -77,6 +89,10 @@ public class User {
 
 	public void setRole(final Role role) {
 		this.role = role;
+	}
+
+	public void setSubscribeDate(final Date subscribeDate) {
+		this.subscribeDate = subscribeDate;
 	}
 
 	public void setUsername(final String username) {

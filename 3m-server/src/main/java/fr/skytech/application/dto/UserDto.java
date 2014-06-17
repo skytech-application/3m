@@ -1,6 +1,9 @@
 package fr.skytech.application.dto;
 
 import java.io.Serializable;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class UserDto extends ControllerResponseDto implements Serializable {
 
@@ -13,6 +16,7 @@ public class UserDto extends ControllerResponseDto implements Serializable {
 	String username;
 	String password;
 	String email;
+	Date subscribeDate;
 	boolean enabled;
 	RoleDto role;
 
@@ -30,6 +34,11 @@ public class UserDto extends ControllerResponseDto implements Serializable {
 
 	public RoleDto getRole() {
 		return this.role;
+	}
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd,HH:00", timezone = "CET")
+	public Date getSubscribeDate() {
+		return this.subscribeDate;
 	}
 
 	public String getUsername() {
@@ -58,6 +67,10 @@ public class UserDto extends ControllerResponseDto implements Serializable {
 
 	public void setRole(final RoleDto role) {
 		this.role = role;
+	}
+
+	public void setSubscribeDate(final Date subscribeDate) {
+		this.subscribeDate = subscribeDate;
 	}
 
 	public void setUsername(final String username) {
