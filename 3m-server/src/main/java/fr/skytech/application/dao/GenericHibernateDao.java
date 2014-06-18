@@ -37,10 +37,11 @@ public abstract class GenericHibernateDao<T, PK extends Serializable> {
 		return t;
 	}
 
-	public void delete(T t) throws TechnicalException {
+	public boolean delete(T t) throws TechnicalException {
 		try {
 			t = this.entityManager.merge(t);
 			this.entityManager.remove(t);
+			return true;
 		} catch (final Exception e) {
 			throw new TechnicalException("Impossible to delete "
 					+ this.entityClass.getSimpleName());

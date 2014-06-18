@@ -19,6 +19,7 @@ public class UserDto extends ControllerResponseDto implements Serializable {
 	Date subscribeDate;
 	boolean enabled;
 	RoleDto role;
+	Integer xp;
 
 	public String getEmail() {
 		return this.email;
@@ -43,6 +44,10 @@ public class UserDto extends ControllerResponseDto implements Serializable {
 
 	public String getUsername() {
 		return this.username;
+	}
+
+	public Integer getXp() {
+		return this.xp;
 	}
 
 	public boolean isEnabled() {
@@ -75,6 +80,10 @@ public class UserDto extends ControllerResponseDto implements Serializable {
 
 	public void setUsername(final String username) {
 		this.username = username;
+	}
+
+	public void setXp(final Integer xp) {
+		this.xp = xp;
 	}
 
 }

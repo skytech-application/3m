@@ -1,10 +1,12 @@
 package fr.skytech.application.controller.api;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.skytech.application.controller.MangaNetworkController;
+import fr.skytech.application.dto.ControllerResponseDto;
 import fr.skytech.application.dto.UserDto;
 import fr.skytech.application.exception.FunctionalException;
 import fr.skytech.application.services.UserService;
@@ -22,6 +25,21 @@ public class UserController extends MangaNetworkController {
 
 	@Autowired
 	UserService service;
+
+	@RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
+	@Secured("ROLE_ADMIN")
+	@ResponseStatus(HttpStatus.OK)
+	public ControllerResponseDto delete(@PathVariable final Long userId,
+			final Principal principal, final Locale locale) {
+		final ControllerResponseDto response = new ControllerResponseDto();
+		if (this.service.delete(userId, principal)) {
+			response.setControllerResponse(this.getProperty(locale,
+					"rest.api.users.delete.success"));
+		} else {
+			throw new FunctionalException("rest.api.users.delete.error");
+		}
+		return response;
+	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)

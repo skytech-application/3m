@@ -43,6 +43,9 @@ public class User {
 	@Temporal(TemporalType.DATE)
 	private Date subscribeDate;
 
+	@Column(name = "xp")
+	private Integer xp;
+
 	public String getEmail() {
 		return this.email;
 	}
@@ -65,6 +68,10 @@ public class User {
 
 	public String getUsername() {
 		return this.username;
+	}
+
+	public Integer getXp() {
+		return this.xp;
 	}
 
 	public boolean isEnabled() {
@@ -97,6 +104,10 @@ public class User {
 
 	public void setUsername(final String username) {
 		this.username = username;
+	}
+
+	public void setXp(final Integer xp) {
+		this.xp = xp;
 	}
 
 }

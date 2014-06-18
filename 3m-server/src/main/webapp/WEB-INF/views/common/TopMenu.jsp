@@ -36,7 +36,7 @@
           
           <sec:authorize access="isAuthenticated()">
 	        <form class="navbar-form navbar-right">
-	        	<button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-user"></span>
+	        	<button id="userButton" type="button" value="<sec:authentication property="principal.username" />" class="btn btn-warning"><span class="glyphicon glyphicon-user"></span>
 	        	 <sec:authentication property="principal.username" /></button>
 	            <a class="btn btn-info" href="<c:url value="/j_spring_security_logout" />"><span class="glyphicon glyphicon-arrow-left"></span> <spring:message code="page.login.form.placeholder.disconnect" /> </a>
 	          </form>

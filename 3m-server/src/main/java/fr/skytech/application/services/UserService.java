@@ -1,5 +1,7 @@
 package fr.skytech.application.services;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +19,26 @@ import fr.skytech.application.model.User;
 @Service
 public class UserService {
 
+	private final GenericAdapter<UserDto, User> userAdapter = new GenericAdapter<UserDto, User>(
+			UserDto.class, User.class);
+
 	@Autowired
 	UserDao userDao;
 
 	@Autowired
 	RoleDao roleDao;
+
+	@Transactional
+	public boolean delete(final Long id, final Principal principal)
+			throws TechnicalException, FunctionalException {
+		final User userModel = this.userDao.find(id);
+		if (userModel.getUsername().equals(principal.getName())) {
+			throw new FunctionalException("rest.api.users.delete.current");
+		} else {
+			return this.userDao.delete(userModel);
+		}
+
+	}
 
 	@Transactional
 	public List<UserDto> findAll() throws TechnicalException,
@@ -54,39 +71,36 @@ public class UserService {
 	@Transactional
 	public UserDto save(final UserDto user) throws TechnicalException,
 			FunctionalException {
-		// Initialisation de l'adapter
-		final GenericAdapter<UserDto, User> adapter = new GenericAdapter<UserDto, User>(
-				UserDto.class, User.class);
-		UserDto userToReturn = null;
-		final User toSave = adapter.dtoToModel(user);
-		User userSaved = null;
-		// Si le user n'a pas d'ID alors on fait un update
+		final User userModel = this.userAdapter.dtoToModel(user);
 		if (user.getId() == null) {
-			// Si un user existe déjà avec ce username
-			if (this.userDao.existUsername(user.getUsername())) {
-				throw new FunctionalException(
-						"rest.api.users.subscribe.username.exists");
-			} else if (this.userDao.existEmail(user.getEmail())) {
-				throw new FunctionalException(
-						"rest.api.users.subscribe.email.exists");
-			} else {
-				// On active l'utilisateur par défaut
-				toSave.setEnabled(true);
-				toSave.setRole(this.roleDao.findRoleByName("ROLE_REGULAR_USER"));
-				// On crée le user
-				userSaved = this.userDao.create(toSave);
-				userToReturn = adapter.modelToDto(userSaved);
-				userToReturn
-						.setControllerResponse("rest.api.users.subscribe.success");
-			}
-
+			return this.subscribe(userModel);
 		} else {
-			// On met à jour le user
-			userSaved = this.userDao.update(toSave);
-			userToReturn = adapter.modelToDto(userSaved);
+			return this.userAdapter.modelToDto(this.userDao.update(userModel));
 		}
-		// On retourne le résultat en l'adaptant
-		return userToReturn;
+	}
+
+	@Transactional
+	public UserDto subscribe(final User user) throws TechnicalException,
+			FunctionalException {
+		// Si un user existe déjà avec ce username
+		if (this.userDao.existUsername(user.getUsername())) {
+			throw new FunctionalException(
+					"rest.api.users.subscribe.username.exists");
+		} else if (this.userDao.existEmail(user.getEmail())) {
+			throw new FunctionalException(
+					"rest.api.users.subscribe.email.exists");
+		} else {
+			// On active l'utilisateur par défaut
+			user.setEnabled(true);
+			user.setRole(this.roleDao.findRoleByName("ROLE_REGULAR_USER"));
+			user.setSubscribeDate(new Date());
+			// On crée le user
+			final User userSaved = this.userDao.create(user);
+			final UserDto userToReturn = this.userAdapter.modelToDto(userSaved);
+			userToReturn
+					.setControllerResponse("rest.api.users.subscribe.success");
+			return userToReturn;
+		}
 	}
 
 }

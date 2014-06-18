@@ -9,6 +9,14 @@ function create(user, callbackSuccess, callbackFail) {
 	});
 }
 
+function destroy(user, callbackSuccess, callbackFail) {
+	mangaNetworkApi.users.destroy(user).fail(function(data){
+		callbackFail(data);
+	}).done(function(data){
+		callbackSuccess(data);
+	});
+}
+
 function find(id, callbackSuccess, callbackFail){
 	mangaNetworkApi.users.read(id).fail(function(data){
 		callbackFail(data);
