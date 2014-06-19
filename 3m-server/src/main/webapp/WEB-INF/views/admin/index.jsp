@@ -30,6 +30,7 @@
 
 	<script type='text/javascript' src='<%= request.getContextPath() %>/js/jquery-2.1.1.min.js'></script>
 	<script type='text/javascript' src='<%= request.getContextPath() %>/js/bootstrap.min.js'></script>
+	<script type='text/javascript' src='<%= request.getContextPath() %>/js/bootbox.min.js'></script>
 	<script type='text/javascript' src='<%= request.getContextPath() %>/js/rest.js'></script>
 	<script type='text/javascript' src='<%= request.getContextPath() %>/js/model/users.js'></script>
 	<script type='text/javascript' src='<%= request.getContextPath() %>/js/controllers/admin.js'></script>

@@ -4,13 +4,15 @@
     		<h1>Liste des utilisateurs</h1>
          <table class="table" id="table">
            <thead><tr>
-             <td>#</td>
-             <td>Pseudo</td>
-             <td>Email</td>
-             <td>Actif</td>
-             <td>Ancienneté</td>
-             <td>Expérience</td>
-             <td>Suiveurs</td>
+             <td><b>#</b></td>
+             <td><b>Pseudo</b></td>
+             <td><b>Email</b></td>
+             <td><b>Role</b></td>
+             <td><b>Actif</b></td>
+             <td><b>Ancienneté</b></td>
+             <td><b>Expérience</b></td>
+             <td><b>Suiveurs</b></td>
+             <td><b>Suis</b></td>
              <td></td>
            </tr></thead>
            <tbody>

@@ -2,6 +2,7 @@ package fr.skytech.application.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -20,9 +21,19 @@ public class UserDto extends ControllerResponseDto implements Serializable {
 	boolean enabled;
 	RoleDto role;
 	Integer xp;
+	List<FollowerDto> followers;
+	List<FollowerDto> followed;
 
 	public String getEmail() {
 		return this.email;
+	}
+
+	public List<FollowerDto> getFollowed() {
+		return this.followed;
+	}
+
+	public List<FollowerDto> getFollowers() {
+		return this.followers;
 	}
 
 	public Long getId() {
@@ -60,6 +71,14 @@ public class UserDto extends ControllerResponseDto implements Serializable {
 
 	public void setEnabled(final boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public void setFollowed(final List<FollowerDto> followed) {
+		this.followed = followed;
+	}
+
+	public void setFollowers(final List<FollowerDto> followers) {
+		this.followers = followers;
 	}
 
 	public void setId(final Long id) {

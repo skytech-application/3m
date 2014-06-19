@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.skytech.application.adapter.GenericAdapter;
+import fr.skytech.application.adapter.UserAdapter;
 import fr.skytech.application.dao.RoleDao;
 import fr.skytech.application.dao.UserDao;
 import fr.skytech.application.dto.UserDto;
@@ -19,14 +19,14 @@ import fr.skytech.application.model.User;
 @Service
 public class UserService {
 
-	private final GenericAdapter<UserDto, User> userAdapter = new GenericAdapter<UserDto, User>(
-			UserDto.class, User.class);
-
 	@Autowired
 	UserDao userDao;
 
 	@Autowired
 	RoleDao roleDao;
+
+	@Autowired
+	UserAdapter userAdapter;
 
 	@Transactional
 	public boolean delete(final Long id, final Principal principal)
@@ -43,29 +43,23 @@ public class UserService {
 	@Transactional
 	public List<UserDto> findAll() throws TechnicalException,
 			FunctionalException {
-		final GenericAdapter<UserDto, User> adapter = new GenericAdapter<UserDto, User>(
-				UserDto.class, User.class);
 		final List<User> users = this.userDao.findAll();
-		final List<UserDto> usersDtos = adapter.modelsToDtos(users);
+		final List<UserDto> usersDtos = this.userAdapter.modelsToDtos(users);
 		return usersDtos;
 	}
 
 	@Transactional
 	public UserDto findUserById(final Long id) throws TechnicalException,
 			FunctionalException {
-		final GenericAdapter<UserDto, User> adapter = new GenericAdapter<UserDto, User>(
-				UserDto.class, User.class);
 		final User user = this.userDao.find(id);
-		final UserDto userDto = adapter.modelToDto(user);
+		final UserDto userDto = this.userAdapter.modelToDto(user);
 		return userDto;
 	}
 
 	public UserDto findUserByUsername(final String username)
 			throws TechnicalException, FunctionalException {
-		final GenericAdapter<UserDto, User> adapter = new GenericAdapter<UserDto, User>(
-				UserDto.class, User.class);
 		final User user = this.userDao.findUserByUsername(username);
-		return adapter.modelToDto(user);
+		return this.userAdapter.modelToDto(user);
 	}
 
 	@Transactional
