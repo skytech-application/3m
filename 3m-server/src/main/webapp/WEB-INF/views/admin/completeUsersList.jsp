@@ -11,8 +11,7 @@
              <td><b>Actif</b></td>
              <td><b>Ancienneté</b></td>
              <td><b>Expérience</b></td>
-             <td><b>Suiveurs</b></td>
-             <td><b>Suis</b></td>
+             <td><b>Amis</b></td>
              <td></td>
            </tr></thead>
            <tbody>

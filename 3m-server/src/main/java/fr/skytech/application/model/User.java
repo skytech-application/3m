@@ -1,7 +1,8 @@
 package fr.skytech.application.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -50,21 +50,14 @@ public class User {
 	private Integer xp;
 
 	@ManyToMany
-	@JoinTable(name = "user_follower", joinColumns = @JoinColumn(name = "userId"), inverseJoinColumns = @JoinColumn(name = "followerId"))
-	protected List<User> followers;
-	@ManyToMany(mappedBy = "followers")
-	protected List<User> followed;
+	private final Set<User> friends = new HashSet<User>();
 
 	public String getEmail() {
 		return this.email;
 	}
 
-	public List<User> getFollowed() {
-		return this.followed;
-	}
-
-	public List<User> getFollowers() {
-		return this.followers;
+	public Set<User> getFriends() {
+		return this.friends;
 	}
 
 	public Long getId() {
@@ -101,14 +94,6 @@ public class User {
 
 	public void setEnabled(final boolean enabled) {
 		this.enabled = enabled;
-	}
-
-	public void setFollowed(final List<User> followed) {
-		this.followed = followed;
-	}
-
-	public void setFollowers(final List<User> followers) {
-		this.followers = followers;
 	}
 
 	public void setId(final Long id) {

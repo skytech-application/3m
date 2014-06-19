@@ -10,6 +10,18 @@ import fr.skytech.application.model.User;
 @Repository
 public class UserDao extends GenericHibernateDao<User, Long> {
 
+	public boolean deleteFriendsOfUser(final Long id) {
+		try {
+			final String sql = "DELETE FROM user_user WHERE user_id = :id || friends_id = :id";
+			final Query query = this.entityManager.createNativeQuery(sql);
+			query.setParameter("id", id);
+			query.executeUpdate();
+			return true;
+		} catch (final Exception e) {
+			return false;
+		}
+	}
+
 	public boolean existEmail(final String email) {
 		try {
 			final Query query = this.entityManager

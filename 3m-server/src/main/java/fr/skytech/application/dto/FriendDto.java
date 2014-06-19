@@ -2,7 +2,7 @@ package fr.skytech.application.dto;
 
 import java.io.Serializable;
 
-public class FollowerDto implements Serializable {
+public class FriendDto implements Serializable {
 
 	/**
 	 * 

@@ -43,8 +43,7 @@ public abstract class GenericHibernateDao<T, PK extends Serializable> {
 			this.entityManager.remove(t);
 			return true;
 		} catch (final Exception e) {
-			throw new TechnicalException("Impossible to delete "
-					+ this.entityClass.getSimpleName());
+			throw new TechnicalException("error.delete");
 		}
 	}
 
@@ -66,6 +65,10 @@ public abstract class GenericHibernateDao<T, PK extends Serializable> {
 			throw new TechnicalException("Impossible to get all "
 					+ this.entityClass.getSimpleName());
 		}
+	}
+
+	public void flush() {
+		this.entityManager.flush();
 	}
 
 	public T update(final T t) throws TechnicalException {

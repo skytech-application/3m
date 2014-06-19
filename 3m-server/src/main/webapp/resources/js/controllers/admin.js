@@ -30,21 +30,14 @@ function findAllCallbackSuccess(data){
         	 var table_cell_subscribe_date = $('<td>', {html: nombre_jour + ' jour(s)'});
          }
          
-         var tooltipFollowers = '&quot;<ul>';
-         for (follower in item.followers) {
-        	  tooltipFollowers+= '<li>'+item.followers[follower].username+'</li>';
+         var tooltipFriends = '&quot;<ul>';
+         for (friend in item.friends) {
+        	 tooltipFriends+= '<li>'+item.friends[friend].username+'</li>';
     	}
-         tooltipFollowers +='</ul>&quot;';
-         
-         var tooltipFollowed = '&quot;<ul>';
-         for (followeded in item.followed) {
-        	 tooltipFollowed+= '<li>'+item.followed[followeded].username+'</li>';
-    	}
-         tooltipFollowed +='</ul>&quot;';
+         tooltipFriends +='</ul>&quot;';
          
          var table_cell_xp = $('<td>', {html: '<span class="badge alert-info">' + item.xp + '&nbsp;&nbsp;<span class="glyphicon glyphicon-flash"></span></span>'});
-         var table_cell_followers = $('<td>', {html : '<button type="button" class="btn btn-default btn-sm" '+ (item.followers.length>0 ? 'onclick="bootbox.alert('+tooltipFollowers+')"' : '') +'>' + item.followers.length + '&nbsp;&nbsp;<span class="glyphicon glyphicon-link"></span></button>'})
-         var table_cell_followed = $('<td>', {html : '<button type="button" class="btn btn-default btn-sm" '+ (item.followed.length>0 ? 'onclick="bootbox.alert('+tooltipFollowed+')"' : '') +'>' + item.followed.length + '&nbsp;&nbsp;<span class="glyphicon glyphicon-link"></span></button>'})
+         var table_cell_friends = $('<td>', {html : '<button type="button" class="btn btn-default btn-sm" '+ (item.friends.length>0 ? 'onclick="bootbox.alert('+tooltipFriends+')"' : '') +'>' + item.friends.length + '&nbsp;&nbsp;<span class="glyphicon glyphicon-link"></span></button>'})
     	 var table_cell_actions = $('<td>', {html: '<button type="button" onclick="deleteUser('+item.id+')" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove"></span>&nbsp;</button>'});
          
          table_row.append(table_cell_id);
@@ -54,8 +47,7 @@ function findAllCallbackSuccess(data){
          table_row.append(table_cell_enabled);
          table_row.append(table_cell_subscribe_date);
          table_row.append(table_cell_xp);
-         table_row.append(table_cell_followers);
-         table_row.append(table_cell_followed);
+         table_row.append(table_cell_friends);
          table_row.append(table_cell_actions);
          table_obj.append(table_row);
     })

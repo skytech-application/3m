@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import fr.skytech.application.dto.FollowerDto;
+import fr.skytech.application.dto.FriendDto;
 import fr.skytech.application.dto.UserDto;
 import fr.skytech.application.model.User;
 
@@ -55,22 +55,16 @@ public class UserAdapter {
 		dto.setUsername(user.getUsername());
 		dto.setXp(user.getXp());
 		dto.setRole(this.roleAdapter.modelToDto(user.getRole()));
-		final List<FollowerDto> followersDtos = new ArrayList<FollowerDto>();
-		for (final User u : user.getFollowers()) {
-			followersDtos.add(this.modelToDtoFollower(u));
+		final List<FriendDto> friendsDtos = new ArrayList<FriendDto>();
+		for (final User u : user.getFriends()) {
+			friendsDtos.add(this.modelToDtoFollower(u));
 		}
-
-		final List<FollowerDto> followedDtos = new ArrayList<FollowerDto>();
-		for (final User u : user.getFollowed()) {
-			followedDtos.add(this.modelToDtoFollower(u));
-		}
-		dto.setFollowers(followersDtos);
-		dto.setFollowed(followedDtos);
+		dto.setFriends(friendsDtos);
 		return dto;
 	}
 
-	public FollowerDto modelToDtoFollower(final User model) {
-		final FollowerDto follower = new FollowerDto();
+	public FriendDto modelToDtoFollower(final User model) {
+		final FriendDto follower = new FriendDto();
 		follower.setId(model.getId());
 		follower.setUsername(model.getUsername());
 		return follower;

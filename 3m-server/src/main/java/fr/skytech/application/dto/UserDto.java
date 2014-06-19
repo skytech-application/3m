@@ -21,19 +21,14 @@ public class UserDto extends ControllerResponseDto implements Serializable {
 	boolean enabled;
 	RoleDto role;
 	Integer xp;
-	List<FollowerDto> followers;
-	List<FollowerDto> followed;
+	List<FriendDto> friends;
 
 	public String getEmail() {
 		return this.email;
 	}
 
-	public List<FollowerDto> getFollowed() {
-		return this.followed;
-	}
-
-	public List<FollowerDto> getFollowers() {
-		return this.followers;
+	public List<FriendDto> getFriends() {
+		return this.friends;
 	}
 
 	public Long getId() {
@@ -73,12 +68,8 @@ public class UserDto extends ControllerResponseDto implements Serializable {
 		this.enabled = enabled;
 	}
 
-	public void setFollowed(final List<FollowerDto> followed) {
-		this.followed = followed;
-	}
-
-	public void setFollowers(final List<FollowerDto> followers) {
-		this.followers = followers;
+	public void setFriends(final List<FriendDto> friends) {
+		this.friends = friends;
 	}
 
 	public void setId(final Long id) {

@@ -35,7 +35,12 @@ public class UserService {
 		if (userModel.getUsername().equals(principal.getName())) {
 			throw new FunctionalException("rest.api.users.delete.current");
 		} else {
-			return this.userDao.delete(userModel);
+			if (this.userDao.deleteFriendsOfUser(userModel.getId())) {
+				this.userDao.delete(userModel);
+				return true;
+			}
+			return false;
+
 		}
 
 	}
